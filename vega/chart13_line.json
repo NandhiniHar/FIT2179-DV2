@@ -1,0 +1,65 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": {
+    "text": "Is Malaysia Spending More on Health?",
+    "fontSize": 14,
+    "font": "sans-serif",
+    "color": "#111111",
+    "fontWeight": "bold",
+    "anchor": "start"
+  },
+  "width": 550,
+  "height": 320,
+  "data": {
+    "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/mnha_moh_expenditure.csv"
+  },
+  "transform": [
+    {"calculate": "datum.expenditure / 1000000000", "as": "expenditure_bn"}
+  ],
+  "mark": {
+    "type": "line",
+    "point": {"filled": true, "size": 60},
+    "color": "#4a7fa5",
+    "strokeWidth": 2.5
+  },
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "title": "Year",
+      "axis": {
+        "titleFont": "sans-serif",
+        "titleFontSize": 11,
+        "titleColor": "#555555",
+        "labelFont": "sans-serif",
+        "labelFontSize": 10,
+        "labelColor": "#555555",
+        "format": "%Y",
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "expenditure_bn",
+      "type": "quantitative",
+      "title": "MOH Expenditure (RM Billion)",
+      "scale": {"zero": false},
+      "axis": {
+        "titleFont": "sans-serif",
+        "titleFontSize": 11,
+        "titleColor": "#555555",
+        "labelFont": "sans-serif",
+        "labelFontSize": 10,
+        "labelColor": "#555555",
+        "format": ",.0f",
+        "grid": false
+      }
+    },
+    "tooltip": [
+      {"field": "date", "type": "temporal", "title": "Year", "format": "%Y"},
+      {"field": "expenditure", "type": "quantitative", "title": "Expenditure (RM Billion)", "format": ",.0f"}
+    ]
+  },
+  "config": {
+    "view": {"stroke": null}
+  }
+}
