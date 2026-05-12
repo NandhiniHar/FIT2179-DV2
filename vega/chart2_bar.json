@@ -1,0 +1,59 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": {
+    "text": "Which States Have the Most Public Hospital Beds? (2022)",
+    "fontSize": 14,
+    "font": "sans-serif",
+    "color": "#111111",
+    "fontWeight": "bold",
+    "anchor": "start"
+  },
+  "width": 500,
+  "height": 380,
+  "data": {
+    "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/hospital_beds.csv"
+  },
+  "transform": [
+    {"filter": "datum.district == 'All Districts'"},
+    {"filter": "datum.state != 'Malaysia'"},
+    {"filter": "datum.type == 'all'"},
+    {"filter": "datum.date == '2022-01-01'"}
+  ],
+  "mark": {"type": "bar", "color": "#4a7fa5"},
+  "encoding": {
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "sort": "-x",
+      "title": null,
+      "axis": {
+        "labelFont": "sans-serif",
+        "labelFontSize": 11,
+        "labelColor": "#555555"
+      }
+    },
+    "x": {
+      "field": "beds",
+      "type": "quantitative",
+      "title": "Total Hospital Beds",
+      "scale": {"zero": true},
+      "axis": {
+        "titleFont": "sans-serif",
+        "titleFontSize": 11,
+        "titleColor": "#555555",
+        "labelFont": "sans-serif",
+        "labelFontSize": 10,
+        "labelColor": "#555555",
+        "grid": false
+      }
+    },
+    "tooltip": [
+      {"field": "state", "type": "nominal", "title": "State"},
+      {"field": "beds", "type": "quantitative", "title": "Beds (2022)", "format": ","}
+    ]
+  },
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"domainColor": "#cccccc"}
+  }
+}
