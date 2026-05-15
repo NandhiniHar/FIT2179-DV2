@@ -1,0 +1,179 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": {
+    "text": "Healthcare Staffing Across Malaysian States (2022)",
+    "fontSize": 20,
+    "font": "sans-serif",
+    "color": "#111111",
+    "fontWeight": "bold",
+    "anchor": "start"
+  },
+  "width": 700,
+  "height": 380,
+  "projection": {
+    "type": "equalEarth",
+    "center": [109.5, 4],
+    "scale": 2380
+  },
+  "layer": [
+    {
+      "data": {"sphere": true},
+      "mark": {"type": "geoshape", "fill": "#cce6f4"}
+    },
+    {
+      "data": {
+        "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json",
+        "format": {"type": "topojson", "feature": "countries"}
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#d4d4d4",
+        "stroke": "#ffffff",
+        "strokeWidth": 0.5
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/main/data/malaysia.json",
+        "format": {"type": "json", "property": "features"}
+      },
+      "transform": [
+        {
+          "calculate": "datum.properties.name == 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' : datum.properties.name == 'Putrajaya' ? 'W.P. Putrajaya' : datum.properties.name == 'Labuan' ? 'W.P. Labuan' : datum.properties.name",
+          "as": "state_name"
+        },
+        {
+          "lookup": "state_name",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/main/data/healthcare_staff_2022.csv"
+            },
+            "key": "state",
+            "fields": ["staff"]
+          }
+        },
+        {
+          "lookup": "state_name",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/main/data/population_2022.csv"
+            },
+            "key": "state",
+            "fields": ["population"]
+          }
+        },
+        {
+          "calculate": "datum.staff != null && datum.population != null ? (datum.staff / (datum.population * 1000)) * 1000 : null",
+          "as": "staff_per_1000"
+        },
+        {"filter": "datum.staff_per_1000 != null"}
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#ffffff",
+        "strokeWidth": 0.8
+      },
+      "encoding": {
+        "color": {
+          "field": "staff_per_1000",
+          "type": "quantitative",
+          "scale": {"scheme": "yellowgreen", "domain": [1, 10]},
+          "legend": {
+            "title": "Healthcare Staff per 1,000 People",
+            "titleFont": "sans-serif",
+            "titleFontSize": 11,
+            "titleColor": "#555555",
+            "labelFont": "sans-serif",
+            "labelFontSize": 10,
+            "labelColor": "#555555",
+            "format": ".2f"
+          }
+        },
+        "tooltip": [
+          {"field": "state_name", "type": "nominal", "title": "State"},
+          {"field": "staff", "type": "quantitative", "title": "Total Staff", "format": ","},
+          {"field": "staff_per_1000", "type": "quantitative", "title": "Staff per 1,000 People", "format": ".2f"}
+        ]
+      }
+    },
+
+    {
+      "data": {
+        "values": [
+          {"x": 100.7, "y": 2.3, "x2": 101.7, "y2": 3.1}
+        ]
+      },
+      "mark": {"type": "rule", "color": "#cc0000", "strokeWidth": 1},
+      "encoding": {
+        "longitude": {"field": "x", "type": "quantitative"},
+        "latitude": {"field": "y", "type": "quantitative"},
+        "longitude2": {"field": "x2"},
+        "latitude2": {"field": "y2"}
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "longitude": 99.8,
+            "latitude": 2.2,
+            "label": "W.P. Kuala\nLumpur: highest\nratio (9.66 per 1,000) -\nMalaysia's main\nhealthcare hub"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 10,
+        "fontWeight": "bold",
+        "color": "#cc0000",
+        "align": "left",
+        "lineBreak": "\n"
+      },
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "text": {"field": "label", "type": "nominal"}
+      }
+    },
+
+    {
+      "data": {
+        "values": [
+          {"x": 104, "y": 4, "x2": 101.4, "y2": 3.45}
+        ]
+      },
+      "mark": {"type": "rule", "color": "#333333", "strokeWidth": 1},
+      "encoding": {
+        "longitude": {"field": "x", "type": "quantitative"},
+        "latitude": {"field": "y", "type": "quantitative"},
+        "longitude2": {"field": "x2"},
+        "latitude2": {"field": "y2"}
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "longitude": 104.1,
+            "latitude": 4.2,
+            "label": "Selangor: most staff in absolute numbers (24,009)\nyet only 3.41 per 1,000 - high population\ndilutes healthcare access"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 10,
+        "fontWeight": "bold",
+        "color": "#333333",
+        "align": "left",
+        "lineBreak": "\n"
+      },
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "text": {"field": "label", "type": "nominal"}
+      }
+    }
+  ],
+  "config": {"view": {"stroke": null}}
+}
