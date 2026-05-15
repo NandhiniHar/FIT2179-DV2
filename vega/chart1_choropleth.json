@@ -78,7 +78,7 @@
         "color": {
           "field": "beds_per_1000",
           "type": "quantitative",
-          "scale": {"scheme": "blues"},
+          "scale": {"scheme": "oranges", "domain": [1, 3]},
           "legend": {
             "title": "Beds per 1,000 People",
             "titleFont": "sans-serif",
