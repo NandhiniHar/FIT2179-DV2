@@ -1,17 +1,17 @@
-state	type	date	staff
-Johor	all	1/1/2022	14634
-Kedah	all	1/1/2022	10372
-Kelantan	all	1/1/2022	12097
-Melaka	all	1/1/2022	5624
-Negeri Sembilan	all	1/1/2022	7248
-Pahang	all	1/1/2022	9586
-Perak	all	1/1/2022	13561
-Perlis	all	1/1/2022	2116
-Pulau Pinang	all	1/1/2022	8192
-Sabah	all	1/1/2022	16345
-Sarawak	all	1/1/2022	13374
-Selangor	all	1/1/2022	24009
-Terengganu	all	1/1/2022	7438
-W.P. Kuala Lumpur	all	1/1/2022	18941
-W.P. Labuan	all	1/1/2022	601
-W.P. Putrajaya	all	1/1/2022	3552
+state,type,date,staff
+Johor,all,1/1/2022,14634
+Kedah,all,1/1/2022,10372
+Kelantan,all,1/1/2022,12097
+Melaka,all,1/1/2022,5624
+Negeri Sembilan,all,1/1/2022,7248
+Pahang,all,1/1/2022,9586
+Perak,all,1/1/2022,13561
+Perlis,all,1/1/2022,2116
+Pulau Pinang,all,1/1/2022,8192
+Sabah,all,1/1/2022,16345
+Sarawak,all,1/1/2022,13374
+Selangor,all,1/1/2022,24009
+Terengganu,all,1/1/2022,7438
+W.P. Kuala Lumpur,all,1/1/2022,18941
+W.P. Labuan,all,1/1/2022,601
+W.P. Putrajaya,all,1/1/2022,3552
