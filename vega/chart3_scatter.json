@@ -1,0 +1,231 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": {
+    "text": "Do Hospital Beds Keep Up with Population Size? (2022)",
+    "fontSize": 15,
+    "font": "sans-serif",
+    "color": "#111111",
+    "fontWeight": "bold",
+    "anchor": "start"
+  },
+  "width": 500,
+  "height": 380,
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/main/data/hospital_beds_2022.csv"
+      },
+      "transform": [
+        {
+          "lookup": "state",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/main/data/population_2022.csv"
+            },
+            "key": "state",
+            "fields": ["population"]
+          }
+        },
+        {
+          "calculate": "datum.population * 1000",
+          "as": "population_actual"
+        },
+        {"filter": "datum.population != null && datum.beds != null"}
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 90,
+        "color": "#2a7a5b",
+        "opacity": 0.85
+      },
+      "encoding": {
+        "x": {
+          "field": "population_actual",
+          "type": "quantitative",
+          "title": "State Population (Millions)",
+          "axis": {"format": "~s", "labelAngle": 0},
+          "scale": {"zero": true}
+        },
+        "y": {
+          "field": "beds",
+          "type": "quantitative",
+          "title": "Total Public Hospital Beds",
+          "axis": {"format": "~s", "labelAngle": 0},
+          "scale": {"zero": true}
+        },
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "population_actual", "type": "quantitative", "title": "Population", "format": ",.0f"},
+          {"field": "beds", "type": "quantitative", "title": "Total Beds", "format": ","}
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/main/data/hospital_beds_2022.csv"
+      },
+      "transform": [
+        {
+          "lookup": "state",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/main/data/population_2022.csv"
+            },
+            "key": "state",
+            "fields": ["population"]
+          }
+        },
+        {
+          "calculate": "datum.population * 1000",
+          "as": "population_actual"
+        },
+        {
+  "calculate": "datum.state == 'W.P. Putrajaya' ? 'W.P.\\nPutrajaya' : datum.state",
+  "as": "label"
+},
+        {
+          "filter": "datum.state == 'Selangor' || datum.state == 'W.P. Kuala Lumpur' || datum.state == 'Perak' || datum.state == 'Johor' || datum.state == 'Sarawak'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": -13,
+        "fontSize": 9,
+        "color": "#444444",
+        "align": "center",
+        "lineBreak": "\n"
+      },
+      "encoding": {
+        "x": {
+          "field": "population_actual",
+          "type": "quantitative",
+          "scale": {"zero": true}
+        },
+        "y": {
+          "field": "beds",
+          "type": "quantitative",
+          "scale": {"zero": true}
+        },
+        "text": {"field": "label", "type": "nominal"}
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/main/data/hospital_beds_2022.csv"
+      },
+      "transform": [
+        {
+          "lookup": "state",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/main/data/population_2022.csv"
+            },
+            "key": "state",
+            "fields": ["population"]
+          }
+        },
+        {
+          "calculate": "datum.population * 1000",
+          "as": "population_actual"
+        },
+        {
+          "filter": "datum.state == 'Sabah'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dx": 8,
+        "fontSize": 9,
+        "color": "#444444",
+        "align": "left"
+      },
+      "encoding": {
+        "x": {
+          "field": "population_actual",
+          "type": "quantitative",
+          "scale": {"zero": true}
+        },
+        "y": {
+          "field": "beds",
+          "type": "quantitative",
+          "scale": {"zero": true}
+        },
+        "text": {"field": "state", "type": "nominal"}
+      }
+    },
+    {
+  "data": {
+    "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/main/data/hospital_beds_2022.csv"
+  },
+  "transform": [
+    {
+      "lookup": "state",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/main/data/population_2022.csv"
+        },
+        "key": "state",
+        "fields": ["population"]
+      }
+    },
+    { "calculate": "datum.population * 1000", "as": "population_actual" },
+    { "calculate": "'W.P.\\nPutrajaya'", "as": "label" },
+    { "filter": "datum.state == 'W.P. Putrajaya'" }
+  ],
+  "mark": {
+    "type": "text",
+    "dx": -5,
+    "dy": -28,
+    "fontSize": 9,
+    "color": "#444444",
+    "align": "left",
+    "lineBreak": "\n"
+  },
+  "encoding": {
+    "x": { "field": "population_actual", "type": "quantitative", "scale": {"zero": true} },
+    "y": { "field": "beds", "type": "quantitative", "scale": {"zero": true} },
+    "text": { "field": "label", "type": "nominal" }
+  }
+},
+    {
+      "data": {
+        "values": [
+          {"x": 0, "y": 0},
+          {"x": 7050300, "y": 10778}
+        ]
+      },
+      "mark": {
+        "type": "line",
+        "color": "#cc0000",
+        "strokeDash": [6, 4],
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative", "scale": {"zero": true}},
+        "y": {"field": "y", "type": "quantitative", "scale": {"zero": true}}
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"x": 3400000, "label": "National average: 1.53 beds per 1,000 people"}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 10,
+        "color": "#cc0000",
+        "fontStyle": "italic",
+        "align": "left",
+        "dy": -8
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative"},
+        "y": {"value": 30},
+        "text": {"field": "label", "type": "nominal"}
+      }
+    }
+  ],
+  "config": {"view": {"stroke": null}}
+}
