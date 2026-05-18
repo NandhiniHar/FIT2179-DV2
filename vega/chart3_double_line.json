@@ -1,0 +1,151 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": {
+    "text": "Do Hospital Beds Keep Up with Population Size?",
+    "fontSize": 20,
+    "font": "sans-serif",
+    "color": "#111111",
+    "fontWeight": "bold",
+    "anchor": "start",
+    "subtitle": "Malaysia's total public hospital beds vs. population, 2015–2022",
+    "subtitleFontSize": 13,
+    "subtitleColor": "#555555",
+    "subtitlePadding": 4
+  },
+  "width": 500,
+  "height": 350,
+  "resolve": { "scale": { "y": "independent" } },
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/population_only_Malaysia.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.sex == 'both' && datum.age == 'overall' && datum.ethnicity == 'overall'"
+        },
+        { "filter": "year(datum.date) <= 2022" },
+        {
+          "aggregate": [{ "op": "sum", "field": "population", "as": "total_population" }],
+          "groupby": ["date"]
+        },
+        {
+          "calculate": "datum.total_population * 1000",
+          "as": "population_actual"
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "color": "#0072B2",
+        "strokeWidth": 2.5,
+        "point": { "filled": true, "size": 55, "color": "#0072B2" }
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "title": null,
+          "axis": {
+            "format": "%Y",
+            "labelAngle": 0,
+            "grid": false,
+            "tickCount": 8,
+            "labelFontSize": 11
+          }
+        },
+        "y": {
+          "field": "population_actual",
+          "type": "quantitative",
+          "title": "Population",
+          "axis": {
+            "titleColor": "#0072B2",
+            "labelColor": "#0072B2",
+            "format": "~s",
+            "grid": true,
+            "gridColor": "#e8e8e8",
+            "gridDash": [3, 3],
+            "labelFontSize": 10,
+            "titleFontSize": 11
+          },
+          "scale": { "zero": false }
+        },
+        "tooltip": [
+          { "field": "date", "type": "temporal", "title": "Year", "format": "%Y" },
+          { "field": "population_actual", "type": "quantitative", "title": "Population", "format": ",.0f" }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/hospital_beds_only%20_Malaysia.csv"
+      },
+      "transform": [
+        { "filter": "datum.state == 'Malaysia' && datum.type == 'all'" }
+      ],
+      "mark": {
+        "type": "line",
+        "color": "#E69F00",
+        "strokeWidth": 2.5,
+        "strokeDash": [6, 3],
+        "point": { "filled": true, "size": 55, "color": "#E69F00" }
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "axis": { "format": "%Y", "labelAngle": 0, "grid": false }
+        },
+        "y": {
+          "field": "beds",
+          "type": "quantitative",
+          "title": "Total Hospital Beds",
+          "axis": {
+            "titleColor": "#E69F00",
+            "labelColor": "#E69F00",
+            "format": "~s",
+            "grid": false,
+            "labelFontSize": 10,
+            "titleFontSize": 11
+          },
+          "scale": { "zero": false }
+        },
+        "tooltip": [
+          { "field": "date", "type": "temporal", "title": "Year", "format": "%Y" },
+          { "field": "beds", "type": "quantitative", "title": "Total Beds", "format": "," }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          { "x": "2020-01-01", "series": "Population (left axis)" },
+          { "x": "2020-01-01", "series": "Hospital Beds (right axis)" }
+        ]
+      },
+      "mark": { "type": "point", "opacity": 0, "size": 0 },
+      "encoding": {
+        "x": { "field": "x", "type": "temporal" },
+        "color": {
+          "field": "series",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Population (left axis)", "Hospital Beds (right axis)"],
+            "range": ["#0072B2", "#E69F00"]
+          },
+          "legend": {
+            "title": null,
+            "orient": "bottom",
+            "labelFontSize": 11,
+            "symbolType": "stroke",
+            "symbolStrokeWidth": 2.5,
+            "padding": 8
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": { "stroke": null },
+    "axis": { "domainColor": "#cccccc" }
+  }
+}
