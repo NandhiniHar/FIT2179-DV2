@@ -1,0 +1,177 @@
+state,date,sex,age,ethnicity,population
+Johor,1/1/2015,both,overall,overall,3610.3
+Johor,1/1/2016,both,overall,overall,3651.8
+Johor,1/1/2017,both,overall,overall,3697
+Johor,1/1/2018,both,overall,overall,3749.4
+Johor,1/1/2019,both,overall,overall,3761.2
+Johor,1/1/2020,both,overall,overall,4009.7
+Johor,1/1/2021,both,overall,overall,4020
+Johor,1/1/2022,both,overall,overall,4028.3
+Johor,1/1/2023,both,overall,overall,4107.2
+Johor,1/1/2024,both,overall,overall,4184.4
+Johor,1/1/2025,both,overall,overall,4205.9
+Kedah,1/1/2015,both,overall,overall,2096.5
+Kedah,1/1/2016,both,overall,overall,2119.7
+Kedah,1/1/2017,both,overall,overall,2143.9
+Kedah,1/1/2018,both,overall,overall,2163
+Kedah,1/1/2019,both,overall,overall,2173.7
+Kedah,1/1/2020,both,overall,overall,2131.4
+Kedah,1/1/2021,both,overall,overall,2151.7
+Kedah,1/1/2022,both,overall,overall,2163.1
+Kedah,1/1/2023,both,overall,overall,2189.3
+Kedah,1/1/2024,both,overall,overall,2217.1
+Kedah,1/1/2025,both,overall,overall,2228
+Kelantan,1/1/2015,both,overall,overall,1760.6
+Kelantan,1/1/2016,both,overall,overall,1796.7
+Kelantan,1/1/2017,both,overall,overall,1829
+Kelantan,1/1/2018,both,overall,overall,1860.5
+Kelantan,1/1/2019,both,overall,overall,1883.8
+Kelantan,1/1/2020,both,overall,overall,1792.5
+Kelantan,1/1/2021,both,overall,overall,1812.3
+Kelantan,1/1/2022,both,overall,overall,1830.6
+Kelantan,1/1/2023,both,overall,overall,1859.8
+Kelantan,1/1/2024,both,overall,overall,1887.9
+Kelantan,1/1/2025,both,overall,overall,1907.7
+Melaka,1/1/2015,both,overall,overall,889
+Melaka,1/1/2016,both,overall,overall,901.1
+Melaka,1/1/2017,both,overall,overall,913.1
+Melaka,1/1/2018,both,overall,overall,922.4
+Melaka,1/1/2019,both,overall,overall,928.4
+Melaka,1/1/2020,both,overall,overall,998.4
+Melaka,1/1/2021,both,overall,overall,1004.5
+Melaka,1/1/2022,both,overall,overall,1008.6
+Melaka,1/1/2023,both,overall,overall,1028.3
+Melaka,1/1/2024,both,overall,overall,1046.7
+Melaka,1/1/2025,both,overall,overall,1052.5
+Negeri Sembilan,1/1/2015,both,overall,overall,1088.8
+Negeri Sembilan,1/1/2016,both,overall,overall,1099.3
+Negeri Sembilan,1/1/2017,both,overall,overall,1114
+Negeri Sembilan,1/1/2018,both,overall,overall,1122.9
+Negeri Sembilan,1/1/2019,both,overall,overall,1126.2
+Negeri Sembilan,1/1/2020,both,overall,overall,1200
+Negeri Sembilan,1/1/2021,both,overall,overall,1204.2
+Negeri Sembilan,1/1/2022,both,overall,overall,1207.9
+Negeri Sembilan,1/1/2023,both,overall,overall,1224.9
+Negeri Sembilan,1/1/2024,both,overall,overall,1239.5
+Negeri Sembilan,1/1/2025,both,overall,overall,1244.6
+Pahang,1/1/2015,both,overall,overall,1607.9
+Pahang,1/1/2016,both,overall,overall,1626.7
+Pahang,1/1/2017,both,overall,overall,1647
+Pahang,1/1/2018,both,overall,overall,1664.7
+Pahang,1/1/2019,both,overall,overall,1671.4
+Pahang,1/1/2020,both,overall,overall,1591.3
+Pahang,1/1/2021,both,overall,overall,1601.5
+Pahang,1/1/2022,both,overall,overall,1614.3
+Pahang,1/1/2023,both,overall,overall,1643.2
+Pahang,1/1/2024,both,overall,overall,1667.7
+Pahang,1/1/2025,both,overall,overall,1678.2
+Perak,1/1/2015,both,overall,overall,2466.9
+Perak,1/1/2016,both,overall,overall,2482.1
+Perak,1/1/2017,both,overall,overall,2493.2
+Perak,1/1/2018,both,overall,overall,2503.5
+Perak,1/1/2019,both,overall,overall,2508.8
+Perak,1/1/2020,both,overall,overall,2496
+Perak,1/1/2021,both,overall,overall,2515.8
+Perak,1/1/2022,both,overall,overall,2514.4
+Perak,1/1/2023,both,overall,overall,2541.2
+Perak,1/1/2024,both,overall,overall,2569.4
+Perak,1/1/2025,both,overall,overall,2574.9
+Perlis,1/1/2015,both,overall,overall,248.5
+Perlis,1/1/2016,both,overall,overall,251
+Perlis,1/1/2017,both,overall,overall,252
+Perlis,1/1/2018,both,overall,overall,253.5
+Perlis,1/1/2019,both,overall,overall,254
+Perlis,1/1/2020,both,overall,overall,284.9
+Perlis,1/1/2021,both,overall,overall,287.6
+Perlis,1/1/2022,both,overall,overall,289.8
+Perlis,1/1/2023,both,overall,overall,293.1
+Perlis,1/1/2024,both,overall,overall,296.8
+Perlis,1/1/2025,both,overall,overall,297.8
+Pulau Pinang,1/1/2015,both,overall,overall,1698.1
+Pulau Pinang,1/1/2016,both,overall,overall,1717.7
+Pulau Pinang,1/1/2017,both,overall,overall,1744.1
+Pulau Pinang,1/1/2018,both,overall,overall,1762.8
+Pulau Pinang,1/1/2019,both,overall,overall,1768.8
+Pulau Pinang,1/1/2020,both,overall,overall,1740.4
+Pulau Pinang,1/1/2021,both,overall,overall,1740
+Pulau Pinang,1/1/2022,both,overall,overall,1740.9
+Pulau Pinang,1/1/2023,both,overall,overall,1772.6
+Pulau Pinang,1/1/2024,both,overall,overall,1800.5
+Pulau Pinang,1/1/2025,both,overall,overall,1803.3
+Sabah,1/1/2015,both,overall,overall,3720.5
+Sabah,1/1/2016,both,overall,overall,3802.8
+Sabah,1/1/2017,both,overall,overall,3855.9
+Sabah,1/1/2018,both,overall,overall,3898.4
+Sabah,1/1/2019,both,overall,overall,3904.4
+Sabah,1/1/2020,both,overall,overall,3418.8
+Sabah,1/1/2021,both,overall,overall,3412.6
+Sabah,1/1/2022,both,overall,overall,3414.9
+Sabah,1/1/2023,both,overall,overall,3596.7
+Sabah,1/1/2024,both,overall,overall,3742
+Sabah,1/1/2025,both,overall,overall,3759.6
+Sarawak,1/1/2015,both,overall,overall,2701.5
+Sarawak,1/1/2016,both,overall,overall,2738.7
+Sarawak,1/1/2017,both,overall,overall,2766.3
+Sarawak,1/1/2018,both,overall,overall,2791.7
+Sarawak,1/1/2019,both,overall,overall,2806
+Sarawak,1/1/2020,both,overall,overall,2453.7
+Sarawak,1/1/2021,both,overall,overall,2465.6
+Sarawak,1/1/2022,both,overall,overall,2473.5
+Sarawak,1/1/2023,both,overall,overall,2502.3
+Sarawak,1/1/2024,both,overall,overall,2517.5
+Sarawak,1/1/2025,both,overall,overall,2529.8
+Selangor,1/1/2015,both,overall,overall,6178
+Selangor,1/1/2016,both,overall,overall,6291.5
+Selangor,1/1/2017,both,overall,overall,6380.7
+Selangor,1/1/2018,both,overall,overall,6475
+Selangor,1/1/2019,both,overall,overall,6506.1
+Selangor,1/1/2020,both,overall,overall,6994.4
+Selangor,1/1/2021,both,overall,overall,7014.7
+Selangor,1/1/2022,both,overall,overall,7050.3
+Selangor,1/1/2023,both,overall,overall,7209.7
+Selangor,1/1/2024,both,overall,overall,7362.7
+Selangor,1/1/2025,both,overall,overall,7406.8
+Terengganu,1/1/2015,both,overall,overall,1161
+Terengganu,1/1/2016,both,overall,overall,1183.4
+Terengganu,1/1/2017,both,overall,overall,1208
+Terengganu,1/1/2018,both,overall,overall,1228.3
+Terengganu,1/1/2019,both,overall,overall,1244.5
+Terengganu,1/1/2020,both,overall,overall,1149.4
+Terengganu,1/1/2021,both,overall,overall,1170.7
+Terengganu,1/1/2022,both,overall,overall,1186.6
+Terengganu,1/1/2023,both,overall,overall,1210
+Terengganu,1/1/2024,both,overall,overall,1231.5
+Terengganu,1/1/2025,both,overall,overall,1246.9
+W.P. Kuala Lumpur,1/1/2015,both,overall,overall,1780.4
+W.P. Kuala Lumpur,1/1/2016,both,overall,overall,1789.7
+W.P. Kuala Lumpur,1/1/2017,both,overall,overall,1793.2
+W.P. Kuala Lumpur,1/1/2018,both,overall,overall,1790
+W.P. Kuala Lumpur,1/1/2019,both,overall,overall,1782.5
+W.P. Kuala Lumpur,1/1/2020,both,overall,overall,1982.1
+W.P. Kuala Lumpur,1/1/2021,both,overall,overall,1964
+W.P. Kuala Lumpur,1/1/2022,both,overall,overall,1961.2
+W.P. Kuala Lumpur,1/1/2023,both,overall,overall,2005.7
+W.P. Kuala Lumpur,1/1/2024,both,overall,overall,2067.5
+W.P. Kuala Lumpur,1/1/2025,both,overall,overall,2074.1
+W.P. Labuan,1/1/2015,both,overall,overall,95.1
+W.P. Labuan,1/1/2016,both,overall,overall,96.8
+W.P. Labuan,1/1/2017,both,overall,overall,97.6
+W.P. Labuan,1/1/2018,both,overall,overall,99
+W.P. Labuan,1/1/2019,both,overall,overall,99.3
+W.P. Labuan,1/1/2020,both,overall,overall,95.1
+W.P. Labuan,1/1/2021,both,overall,overall,96
+W.P. Labuan,1/1/2022,both,overall,overall,96.9
+W.P. Labuan,1/1/2023,both,overall,overall,99
+W.P. Labuan,1/1/2024,both,overall,overall,100.8
+W.P. Labuan,1/1/2025,both,overall,overall,100.9
+W.P. Putrajaya,1/1/2015,both,overall,overall,83
+W.P. Putrajaya,1/1/2016,both,overall,overall,84.4
+W.P. Putrajaya,1/1/2017,both,overall,overall,87.5
+W.P. Putrajaya,1/1/2018,both,overall,overall,97.2
+W.P. Putrajaya,1/1/2019,both,overall,overall,103.7
+W.P. Putrajaya,1/1/2020,both,overall,overall,109.2
+W.P. Putrajaya,1/1/2021,both,overall,overall,115.2
+W.P. Putrajaya,1/1/2022,both,overall,overall,117
+W.P. Putrajaya,1/1/2023,both,overall,overall,118.8
+W.P. Putrajaya,1/1/2024,both,overall,overall,120.3
+W.P. Putrajaya,1/1/2025,both,overall,overall,120.8
