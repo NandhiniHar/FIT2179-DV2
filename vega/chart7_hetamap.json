@@ -1,0 +1,96 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": {
+    "text": "Healthcare Workforce by State and Staff Type (2022)",
+    "fontSize": 14,
+    "font": "sans-serif",
+    "color": "#111111",
+    "fontWeight": "bold",
+    "anchor": "start",
+    "subtitle": "Number of public healthcare staff per state",
+    "subtitleFontSize": 11,
+    "subtitleColor": "#555555",
+    "subtitlePadding": 4
+  },
+  "width": 280,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/healthcare_staff.csv"
+  },
+  "transform": [
+    { "filter": "year(toDate(datum.date)) == 2022" },
+    { "filter": "datum.type != 'all'" },
+    { "filter": "datum.state != 'Malaysia'" },
+    {
+      "calculate": "datum.type == 'nurse_community' ? 'Community Nurse' : datum.type == 'nurse' ? 'Nurse' : datum.type == 'doctor' ? 'Doctor' : 'Dentist'",
+      "as": "staff_label"
+    },
+    {
+      "calculate": "datum.type == 'doctor' ? 1 : datum.type == 'nurse' ? 2 : datum.type == 'nurse_community' ? 3 : 4",
+      "as": "sort_order"
+    }
+  ],
+  "mark": {
+    "type": "rect",
+    "stroke": "white",
+    "strokeWidth": 1
+  },
+  "encoding": {
+    "x": {
+      "field": "staff_label",
+      "type": "nominal",
+      "title": null,
+      "sort": { "field": "sort_order", "op": "min", "order": "ascending" },
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 11,
+        "labelLineHeight": 15,
+        "orient": "bottom",
+        "ticks": false,
+        "domain": false,
+        "labelExpr": "datum.label === 'Community Nurse' ? ['Community', 'Nurse'] : datum.label"
+      }
+    },
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "title": null,
+      "sort": {
+        "field": "staff",
+        "op": "sum",
+        "order": "descending"
+      },
+      "axis": {
+        "labelFontSize": 11,
+        "ticks": false,
+        "domain": false
+      }
+    },
+    "color": {
+      "field": "staff",
+      "type": "quantitative",
+      "title": "Staff Count",
+      "scale": {
+        "scheme": "blues",
+        "type": "sqrt"
+      },
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal",
+        "titleFontSize": 10,
+        "labelFontSize": 9,
+        "gradientLength": 220,
+        "gradientThickness": 10
+      }
+    },
+    "tooltip": [
+      { "field": "state", "type": "nominal", "title": "State" },
+      { "field": "staff_label", "type": "nominal", "title": "Staff Type" },
+      { "field": "staff", "type": "quantitative", "title": "Staff", "format": "," }
+    ]
+  },
+  "config": {
+    "view": { "stroke": null },
+    "axis": { "grid": false }
+  }
+}
