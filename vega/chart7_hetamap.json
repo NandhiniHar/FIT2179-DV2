@@ -1,13 +1,13 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "title": {
-    "text": "Healthcare Workforce by State and Staff Type (2022)",
+    "text": "Healthcare Workforce Composition by State (2022)",
     "fontSize": 14,
     "font": "sans-serif",
     "color": "#111111",
     "fontWeight": "bold",
     "anchor": "start",
-    "subtitle": "Number of public healthcare staff per state",
+    "subtitle": "Share of each staff type as % of total state workforce",
     "subtitleFontSize": 11,
     "subtitleColor": "#555555",
     "subtitlePadding": 4
@@ -28,6 +28,14 @@
     {
       "calculate": "datum.type == 'doctor' ? 1 : datum.type == 'nurse' ? 2 : datum.type == 'nurse_community' ? 3 : 4",
       "as": "sort_order"
+    },
+    {
+      "joinaggregate": [{ "op": "sum", "field": "staff", "as": "total_per_state" }],
+      "groupby": ["state"]
+    },
+    {
+      "calculate": "datum.staff / datum.total_per_state * 100",
+      "as": "pct"
     }
   ],
   "mark": {
@@ -67,12 +75,12 @@
       }
     },
     "color": {
-      "field": "staff",
+      "field": "pct",
       "type": "quantitative",
-      "title": "Staff Count",
+      "title": "% of State Workforce",
       "scale": {
         "scheme": "blues",
-        "type": "sqrt"
+        "domain": [0, 70]
       },
       "legend": {
         "orient": "bottom",
@@ -80,13 +88,16 @@
         "titleFontSize": 10,
         "labelFontSize": 9,
         "gradientLength": 220,
-        "gradientThickness": 10
+        "gradientThickness": 10,
+        "format": ".0f",
+        "labelExpr": "datum.label + '%'"
       }
     },
     "tooltip": [
       { "field": "state", "type": "nominal", "title": "State" },
       { "field": "staff_label", "type": "nominal", "title": "Staff Type" },
-      { "field": "staff", "type": "quantitative", "title": "Staff", "format": "," }
+      { "field": "staff", "type": "quantitative", "title": "Count", "format": "," },
+      { "field": "pct", "type": "quantitative", "title": "% of State", "format": ".1f" }
     ]
   },
   "config": {
