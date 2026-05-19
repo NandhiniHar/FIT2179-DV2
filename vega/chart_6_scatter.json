@@ -1,0 +1,396 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": {
+    "text": "Hospital Beds vs. Healthcare Staff by State (2022) Per 1,000 Population",
+    "subtitle": "Dashed lines = national median · W.P. Putrajaya excluded (outlier: 5.4 beds, 30.4 staff per 1,000)",
+    "fontSize": 20,
+    "subtitleFontSize": 14,
+    "font": "sans-serif",
+    "subtitleFont": "sans-serif",
+    "color": "#111111",
+    "subtitleColor": "#555555",
+    "fontWeight": "bold",
+    "anchor": "start",
+    "offset": 10
+  },
+  "width": 580,
+  "height": 460,
+  "data": {
+    "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/population_2022.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.sex == 'both' && datum.age == 'overall' && datum.ethnicity == 'overall'"
+    },
+    {
+      "lookup": "state",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/hospital_beds_2022.csv"
+        },
+        "key": "state",
+        "fields": ["beds"]
+      }
+    },
+    {
+      "lookup": "state",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/healthcare_staff_2022.csv"
+        },
+        "key": "state",
+        "fields": ["staff"]
+      }
+    },
+    {"calculate": "datum.population * 1000", "as": "pop"},
+    {"calculate": "datum.beds / datum.pop * 1000", "as": "beds_per_1000"},
+    {"calculate": "datum.staff / datum.pop * 1000", "as": "staff_per_1000"},
+    {
+      "calculate": "datum.state == 'W.P. Kuala Lumpur' || datum.state == 'W.P. Labuan' ? 'Federal Territory' : datum.state == 'Sabah' || datum.state == 'Sarawak' ? 'East Malaysia' : 'Peninsular Malaysia'",
+      "as": "region"
+    },
+    {
+      "calculate": "datum.beds_per_1000 >= 1.551 && datum.staff_per_1000 >= 5.757 ? 'Well-Resourced' : datum.beds_per_1000 < 1.551 && datum.staff_per_1000 < 5.757 ? 'Under-Resourced' : datum.beds_per_1000 >= 1.551 && datum.staff_per_1000 < 5.757 ? 'Bed-Rich, Staff-Lean' : 'Staff-Rich, Bed-Lean'",
+      "as": "quadrant"
+    },
+    {
+      "filter": "datum.state != 'W.P. Putrajaya'"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeDash": [5, 4],
+        "strokeWidth": 1.2,
+        "color": "#999999",
+        "opacity": 0.8
+      },
+      "encoding": {
+        "x": {"datum": 1.551, "type": "quantitative"}
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeDash": [5, 4],
+        "strokeWidth": 1.2,
+        "color": "#999999",
+        "opacity": 0.8
+      },
+      "encoding": {
+        "y": {"datum": 5.757, "type": "quantitative"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "font": "sans-serif",
+        "opacity": 0.6,
+        "dx": 5,
+        "dy": 14,
+        "align": "left"
+      },
+      "encoding": {
+        "x": {"value": 65},
+        "y": {"value": 2},
+        "text": {"value": "More Staff, Fewer Beds"},
+        "color": {"value": "#b7770d"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "font": "sans-serif",
+        "opacity": 0.6,
+        "dx": 5,
+        "dy": 14,
+        "align": "left"
+      },
+      "encoding": {
+        "x": {"value": 370},
+        "y": {"value": 2},
+        "text": {"value": "Well-Resourced"},
+        "color": {"value": "#1a7a40"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "font": "sans-serif",
+        "opacity": 0.6,
+        "dx": 5,
+        "dy": -5,
+        "align": "left"
+      },
+      "encoding": {
+        "x": {"value": 80},
+        "y": {"value": 450},
+        "text": {"value": "Under-Resourced"},
+        "color": {"value": "#c0392b"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "font": "sans-serif",
+        "opacity": 0.6,
+        "dx": 5,
+        "dy": -5,
+        "align": "left"
+      },
+      "encoding": {
+        "x": {"value": 370},
+        "y": {"value": 450},
+        "text": {"value": "More Beds, Fewer Staff"},
+        "color": {"value": "#2471a3"}
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 120,
+        "stroke": "white",
+        "strokeWidth": 1.0
+      },
+      "params": [
+        {
+          "name": "hover",
+          "select": {
+            "type": "point",
+            "on": "mouseover",
+            "clear": "mouseout"
+          }
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "beds_per_1000",
+          "type": "quantitative",
+          "title": "Hospital Beds per 1,000 Population",
+          "scale": {"domain": [0.8, 3.2]},
+          "axis": {
+            "grid": false,
+            "titleFont": "sans-serif",
+            "titleFontSize": 11,
+            "titleColor": "#555555",
+            "labelFont": "sans-serif",
+            "labelFontSize": 10,
+            "labelColor": "#555555",
+            "domainColor": "#cccccc"
+          }
+        },
+        "y": {
+          "field": "staff_per_1000",
+          "type": "quantitative",
+          "title": "Healthcare Staff per 1,000 Population",
+          "scale": {"domain": [2.5, 12]},
+          "axis": {
+            "grid": false,
+            "titleFont": "sans-serif",
+            "titleFontSize": 11,
+            "titleColor": "#555555",
+            "labelFont": "sans-serif",
+            "labelFontSize": 10,
+            "labelColor": "#555555",
+            "domainColor": "#cccccc"
+          }
+        },
+        "color": {
+          "field": "region",
+          "type": "nominal",
+          "title": "Region",
+          "scale": {
+            "domain": [
+              "Peninsular Malaysia",
+              "East Malaysia",
+              "Federal Territory"
+            ],
+            "range": ["#2c7bb6", "#d7191c", "#756bb1"]
+          },
+          "legend": {
+            "labelFont": "sans-serif",
+            "titleFont": "sans-serif",
+            "labelFontSize": 10,
+            "titleFontSize": 11
+          }
+        },
+        "opacity": {
+          "condition": {"param": "hover", "value": 1},
+          "value": 0.82
+        },
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "beds_per_1000", "type": "quantitative", "title": "Beds per 1,000", "format": ".2f"},
+          {"field": "staff_per_1000", "type": "quantitative", "title": "Staff per 1,000", "format": ".2f"},
+          {"field": "region", "type": "nominal", "title": "Region"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "dy": 15, "fontSize": 11, "fontWeight": "bold", "font": "sans-serif", "align": "center"},
+      "transform": [{"filter": "datum.state == 'W.P. Kuala Lumpur'"}],
+      "encoding": {
+        "x": {"field": "beds_per_1000", "type": "quantitative"},
+        "y": {"field": "staff_per_1000", "type": "quantitative"},
+        "text": {"value": "W.P. Kuala Lumpur"},
+        "color": {"value": "#111111"}
+      }
+    },
+    {
+      "mark": {"type": "text", "dy": 15, "fontSize": 11, "fontWeight": "bold", "font": "sans-serif", "align": "center"},
+      "transform": [{"filter": "datum.state == 'Perak'"}],
+      "encoding": {
+        "x": {"field": "beds_per_1000", "type": "quantitative"},
+        "y": {"field": "staff_per_1000", "type": "quantitative"},
+        "text": {"value": "Perak"},
+        "color": {"value": "#111111"}
+      }
+    },
+    {
+      "mark": {"type": "text", "dy": 15, "fontSize": 11, "fontWeight": "bold", "font": "sans-serif", "align": "center"},
+      "transform": [{"filter": "datum.state == 'Selangor'"}],
+      "encoding": {
+        "x": {"field": "beds_per_1000", "type": "quantitative"},
+        "y": {"field": "staff_per_1000", "type": "quantitative"},
+        "text": {"value": "Selangor"},
+        "color": {"value": "#111111"}
+      }
+    },
+    {
+      "mark": {"type": "text", "dy": 15, "fontSize": 11, "fontWeight": "bold", "font": "sans-serif", "align": "center"},
+      "transform": [{"filter": "datum.state == 'Johor'"}],
+      "encoding": {
+        "x": {"field": "beds_per_1000", "type": "quantitative"},
+        "y": {"field": "staff_per_1000", "type": "quantitative"},
+        "text": {"value": "Johor"},
+        "color": {"value": "#111111"}
+      }
+    },
+    {
+      "mark": {"type": "text", "dx": -9, "dy": 12, "fontSize": 11, "fontWeight": "bold", "font": "sans-serif"},
+      "transform": [{"filter": "datum.state == 'Sabah'"}],
+      "encoding": {
+        "x": {"field": "beds_per_1000", "type": "quantitative"},
+        "y": {"field": "staff_per_1000", "type": "quantitative"},
+        "text": {"value": "Sabah"},
+        "color": {"value": "#111111"}
+      }
+    },
+    {
+      "mark": {"type": "text", "dx": 32, "dy": 1, "fontSize": 11, "fontWeight": "bold", "font": "sans-serif"},
+      "transform": [{"filter": "datum.state == 'Sarawak'"}],
+      "encoding": {
+        "x": {"field": "beds_per_1000", "type": "quantitative"},
+        "y": {"field": "staff_per_1000", "type": "quantitative"},
+        "text": {"value": "Sarawak"},
+        "color": {"value": "#111111"}
+      }
+    },
+    {
+      "mark": {"type": "text", "dy": 11, "fontSize": 11, "fontWeight": "bold", "font": "sans-serif", "align": "center"},
+      "transform": [{"filter": "datum.state == 'W.P. Labuan'"}],
+      "encoding": {
+        "x": {"field": "beds_per_1000", "type": "quantitative"},
+        "y": {"field": "staff_per_1000", "type": "quantitative"},
+        "text": {"value": "W.P. Labuan"},
+        "color": {"value": "#111111"}
+      }
+    },
+    {
+      "mark": {"type": "text", "dy": 13, "fontSize": 11, "fontWeight": "bold", "font": "sans-serif", "align": "center"},
+      "transform": [{"filter": "datum.state == 'Perlis'"}],
+      "encoding": {
+        "x": {"field": "beds_per_1000", "type": "quantitative"},
+        "y": {"field": "staff_per_1000", "type": "quantitative"},
+        "text": {"value": "Perlis"},
+        "color": {"value": "#111111"}
+      }
+    },
+    {
+  "mark": {
+    "type": "rule",
+    "color": "#000000",
+    "strokeWidth": 1
+  },
+  "transform": [{"filter": "datum.state == 'Selangor'"}],
+  "encoding": {
+    "x": {"field": "beds_per_1000", "type": "quantitative"},
+    "y": {"field": "staff_per_1000", "type": "quantitative"},
+    "x2": {"value": 90},
+    "y2": {"value": 100}
+  }
+},
+{
+  "mark": {
+    "type": "text",
+    "fontSize": 10,
+    "fontStyle": "italic",
+    "font": "sans-serif",
+    "align": "left",
+    "lineBreak": "\n"
+  },
+  "encoding": {
+    "x": {"value": 50},
+    "y": {"value": 70},
+    "text": {"value": "Home to 1 in 6 Malaysians,\nyet ranks last in both metrics,\ndemand vastly outpaces supply."},
+    "color": {"value": "#c0392b"}
+  }
+},
+{
+  "mark": {
+    "type": "rule",
+    "color": "#000000",
+    "strokeWidth": 1
+  },
+  "transform": [{"filter": "datum.state == 'Sabah'"}],
+  "encoding": {
+    "x": {"field": "beds_per_1000", "type": "quantitative"},
+    "y": {"field": "staff_per_1000", "type": "quantitative"},
+    "x2": {"value": 400},
+    "y2": {"value": 320}
+  }
+},
+{
+  "mark": {
+    "type": "rule",
+    "color": "#000000",
+    "strokeWidth": 1
+  },
+  "transform": [{"filter": "datum.state == 'Sarawak'"}],
+  "encoding": {
+    "x": {"field": "beds_per_1000", "type": "quantitative"},
+    "y": {"field": "staff_per_1000", "type": "quantitative"},
+    "x2": {"value": 400},
+    "y2": {"value": 320}
+  }
+},
+{
+  "mark": {
+    "type": "text",
+    "fontSize": 10,
+    "fontStyle": "italic",
+    "font": "sans-serif",
+    "align": "left",
+    "lineBreak": "\n"
+  },
+  "encoding": {
+    "x": {"value": 405},
+    "y": {"value": 320},
+    "text": {"value": "Sabah & Sarawak are geographically\nMalaysia's largest states yet receive\nfewer beds per capita, a persistent\nurban-rural healthcare divide."},
+    "color": {"value": "#c0392b"}
+  }
+}
+  ],
+  "config": {
+    "background": "#ffffff",
+    "view": {"stroke": null},
+    "font": "sans-serif",
+    "axis": {"domainColor": "#cccccc"}
+  }
+}
