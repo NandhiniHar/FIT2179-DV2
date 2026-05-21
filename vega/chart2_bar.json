@@ -8,7 +8,7 @@
     "fontWeight": "bold",
     "anchor": "start"
   },
-  "width": 500,
+  "width": 700,
   "height": 380,
   "data": {
     "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/hospital_beds.csv"
