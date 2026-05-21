@@ -12,7 +12,7 @@
     "subtitleColor": "#555555",
     "subtitlePadding": 4
   },
-  "width": 500,
+  "width": 700,
   "height": 400,
   "data": {
     "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/hospital_beds.csv"
@@ -23,7 +23,7 @@
     { "filter": "datum.district == 'All Districts'" },
     { "filter": "datum.type != 'all'" },
     {
-      "calculate": "datum.type == 'hospital_moh' ? 'MOH Hospital' : datum.type == 'hospital_non_moh' ? 'Non-MOH Hospital' : 'Special Medical Inst.'",
+      "calculate": "datum.type == 'hospital_moh' ? 'MOH Hospital' : datum.type == 'hospital_non_moh' ? 'Non-MOH Hospital' : 'Special Medical Institution'",
       "as": "type_label"
     },
     {
@@ -31,61 +31,99 @@
       "as": "sort_order"
     }
   ],
-  "mark": { "type": "bar" },
-  "encoding": {
-    "x": {
-      "field": "beds",
-      "type": "quantitative",
-      "title": "Share of Hospital Beds (%)",
-      "stack": "normalize",
-      "axis": {
-        "format": "%",
-        "labelAngle": 0,
-        "ticks": false,
-        "domain": false,
-        "gridColor": "#e0e0e0",
-        "gridDash": [3, 3]
+  "layer": [
+    {
+      "mark": { "type": "bar" },
+      "encoding": {
+        "x": {
+          "field": "beds",
+          "type": "quantitative",
+          "title": "Share of Hospital Beds (%)",
+          "stack": "normalize",
+          "axis": {
+            "format": "%",
+            "labelAngle": 0,
+            "ticks": false,
+            "domain": false,
+            "gridColor": "#e0e0e0",
+            "gridDash": [3, 3]
+          }
+        },
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "title": null,
+          "sort": { "field": "beds", "op": "sum", "order": "descending" },
+          "axis": {
+            "labelFontSize": 11,
+            "ticks": false,
+            "domain": false,
+            "labelColor": {
+              "condition": {
+                "test": "datum.value == 'W.P. Putrajaya'",
+                "value": "#c0392b"
+              },
+              "value": "#555555"
+            },
+            "labelFontWeight": {
+              "condition": {
+                "test": "datum.value == 'W.P. Putrajaya'",
+                "value": "bold"
+              },
+              "value": "normal"
+            }
+          }
+        },
+        "color": {
+          "field": "type_label",
+          "type": "nominal",
+          "title": "Hospital Type",
+          "sort": { "field": "sort_order", "op": "min" },
+          "scale": {
+            "domain": ["MOH Hospital", "Non-MOH Hospital", "Special Medical Institution"],
+            "range": ["#1a5c42", "#74b8a0", "#c8e6d0"]
+          },
+          "legend": {
+            "orient": "right",
+            "direction": "vertical",
+            "titleFontSize": 10,
+            "labelFontSize": 10,
+            "columnPadding": 12,
+            "padding": 6
+          }
+        },
+        "order": {
+          "field": "sort_order",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          { "field": "state", "type": "nominal", "title": "State" },
+          { "field": "type_label", "type": "nominal", "title": "Hospital Type" },
+          { "field": "beds", "type": "quantitative", "title": "Beds", "format": "," }
+        ]
       }
     },
-    "y": {
-      "field": "state",
-      "type": "nominal",
-      "title": null,
-      "sort": { "field": "beds", "op": "sum", "order": "descending" },
-      "axis": {
-        "labelFontSize": 11,
-        "ticks": false,
-        "domain": false
-      }
-    },
-    "color": {
-      "field": "type_label",
-      "type": "nominal",
-      "title": "Hospital Type",
-      "sort": { "field": "sort_order", "op": "min" },
-      "scale": {
-        "domain": ["MOH Hospital", "Non-MOH Hospital", "Special Medical Inst."],
-        "range": ["#1a5c42", "#74b8a0", "#c8e6d0"]
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 4,
+        "fontSize": 10,
+        "fontStyle": "italic",
+        "lineBreak": "\n"
       },
-      "legend": {
-        "orient": "bottom",
-        "direction": "horizontal",
-        "titleFontSize": 10,
-        "labelFontSize": 10,
-        "columnPadding": 12,
-        "padding": 6
+      "transform": [
+        { "filter": "datum.state == 'W.P. Putrajaya'" },
+        { "filter": "datum.type_label == 'Special Medical Institution'" }
+      ],
+      "encoding": {
+        "x": { "field": "beds", "type": "quantitative", "stack": "normalize" },
+        "y": { "field": "state", "type": "nominal" },
+        "text": { "value": "Highest share of\nSpecial Medical Institution" },
+        "color": { "value": "#c0392b" }
       }
-    },
-    "order": {
-      "field": "sort_order",
-      "type": "quantitative"
-    },
-    "tooltip": [
-      { "field": "state", "type": "nominal", "title": "State" },
-      { "field": "type_label", "type": "nominal", "title": "Hospital Type" },
-      { "field": "beds", "type": "quantitative", "title": "Beds", "format": "," }
-    ]
-  },
+    }
+  ],
   "config": {
     "view": { "stroke": null },
     "axis": { "grid": false }
