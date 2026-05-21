@@ -2,17 +2,17 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "title": {
     "text": "Healthcare Workforce Composition by State (2022)",
-    "fontSize": 14,
+    "fontSize": 20,
     "font": "sans-serif",
     "color": "#111111",
     "fontWeight": "bold",
     "anchor": "start",
-    "subtitle": "Share of each staff type as % of total state workforce",
-    "subtitleFontSize": 11,
+    "subtitle": "Share of each staff type as percentage (%) of total state workforce.",
+    "subtitleFontSize": 13,
     "subtitleColor": "#555555",
     "subtitlePadding": 4
   },
-  "width": 280,
+  "width": 700,
   "height": 400,
   "data": {
     "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/healthcare_staff.csv"
@@ -83,8 +83,8 @@
         "domain": [0, 70]
       },
       "legend": {
-        "orient": "bottom",
-        "direction": "horizontal",
+        "orient": "right",
+        "direction": "vertical",
         "titleFontSize": 10,
         "labelFontSize": 9,
         "gradientLength": 220,
