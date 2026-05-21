@@ -6,7 +6,11 @@
     "font": "sans-serif",
     "color": "#111111",
     "fontWeight": "bold",
-    "anchor": "start"
+    "anchor": "start",
+    "subtitle": "Urban federal territories lead, while high-population states like Selangor are diluted.",
+    "subtitleFontSize": 13,
+    "subtitleColor": "#555555",
+    "subtitlePadding": 4
   },
   "width": 700,
   "height": 380,
@@ -79,7 +83,7 @@
           "type": "quantitative",
           "scale": {"scheme": "yellowgreen", "domain": [1, 10]},
           "legend": {
-            "title": "Healthcare Staff per 1,000 People",
+            "title": "Healthcare Staff\nper 1,000 People",
             "titleFont": "sans-serif",
             "titleFontSize": 11,
             "titleColor": "#555555",
