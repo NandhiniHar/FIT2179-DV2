@@ -7,12 +7,12 @@
     "color": "#111111",
     "fontWeight": "bold",
     "anchor": "start",
-    "subtitle": "Malaysia's total public hospital beds vs. population, 2015–2022",
+    "subtitle": "Malaysia's total public hospital beds vs population, 2015 to 2022.",
     "subtitleFontSize": 13,
     "subtitleColor": "#555555",
     "subtitlePadding": 4
   },
-  "width": 500,
+  "width": 700,
   "height": 350,
   "resolve": { "scale": { "y": "independent" } },
   "layer": [
