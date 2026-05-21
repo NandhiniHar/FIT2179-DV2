@@ -1,89 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Malaysia's Public Healthcare</title>
-
-  <!-- Bootstrap: makes the page look nice -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Google Font: Nunito -->
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- Vega-Lite: draws the charts -->
-  <script src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Malaysia's Public Healthcare System: A State-by-State Story</title>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Nunito', sans-serif; background-color: #f8f9fa; }
-    .hero { background-color: #1a3c5e; color: white; padding: 60px 20px; text-align: center; }
-    .section-title { color: #1a3c5e; font-weight: 700; margin: 40px 0 10px; }
-    .chart-box { background: white; border-radius: 10px; padding: 20px; margin-bottom: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      color: #111111;
+      background: #ffffff;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 24px 72px 24px;
+      text-align: left;
+    }
+
+    /* ── Page header ── */
+    .page-header {
+      border-bottom: 2px solid #111111;
+      padding-bottom: 16px;
+      margin-bottom: 52px;
+    }
+    .page-header .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #999999;
+      margin-bottom: 10px;
+    }
+    .page-header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 34px;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      color: #111111;
+    }
+    .page-header p {
+      font-size: 14px;
+      color: #666666;
+      line-height: 1.6;
+      max-width: 680px;
+    }
+
+    /* ── Section group ── */
+    .section {
+      margin-bottom: 56px;
+    }
+
+    /* ── Section eyebrow ── */
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #999999;
+      margin-bottom: 6px;
+    }
+
+    /* ── Section title — largest heading level ── */
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: #111111;
+      line-height: 1.2;
+      margin-bottom: 28px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    /* ── Each chart block ── */
+    .chart-block {
+      margin-bottom: 40px;
+    }
+
+    /* ── Caption sits directly below chart ── */
+    .caption {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #666666;
+      line-height: 1.6;
+      max-width: 700px;
+    }
+    .caption strong {
+      color: #111111;
+      font-weight: 700;
+    }
+
+    /* ── Chart container ── */
+    .chart-wrap { width: 100%; }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 1px solid #e0e0e0;
+      margin: 0 0 52px 0;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 64px;
+      padding-top: 16px;
+      border-top: 1px solid #e0e0e0;
+      font-size: 11px;
+      color: #999999;
+      line-height: 1.8;
+    }
+    .footer strong { color: #666666; }
   </style>
 </head>
 <body>
 
-  <!-- HERO BANNER -->
-  <div class="hero">
-    <h1>Malaysia's Public Healthcare</h1>
-    <p>A data-driven look at access, workforce, and reach across all states</p>
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="eyebrow">FIT2179 Data Visualisation 2</div>
+    <h1>Malaysia's Public Healthcare System:<br>A State-by-State Story</h1>
+    <p>Hospital bed capacity, staffing, and health expenditure across Malaysia's states and federal territories, 2022. Data: Ministry of Health Malaysia (MOH) and Department of Statistics Malaysia (DOSM).</p>
   </div>
 
-  <div class="container my-5">
+  <!-- SECTION 1 -->
+  <div class="section">
+    <div class="section-eyebrow">Section 1</div>
+    <div class="section-title">Where Are Malaysia's Hospital Beds?</div>
 
-    <!-- SECTION 1 -->
-    <h2 class="section-title">Section 1: Access by Place</h2>
-
-    <!-- Chart 1: Map -->
-    <div class="chart-box">
-      <h5>1. Where are Malaysia's Public Hospital Beds?</h5>
-      <div id="chart1"></div>
+    <div class="chart-block">
+      <div class="chart-wrap" id="chart1"></div>
+      <p class="caption"><strong>Geographic distribution is uneven.</strong> Beds concentrate in Peninsular Malaysia. East Malaysian states are under-served despite their large geographic size.</p>
     </div>
 
-    <!-- Charts 2 and 3 side by side -->
-    <div class="row">
-      <div class="col-md-6">
-        <div class="chart-box">
-          <h5>2. Which States Have the Most Public Hospital Beds?</h5>
-          <div id="chart2"></div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="chart-box">
-          <h5>3. Beds per 100,000 People: A Fairer View</h5>
-          <div id="chart3"></div>
-        </div>
-      </div>
+    <div class="chart-block">
+      <div class="chart-wrap" id="chart2"></div>
+      <p class="caption"><strong>Absolute counts mislead.</strong> Selangor leads in total beds, but Perak ranks unexpectedly high due to older established public hospitals.</p>
     </div>
 
-    <!-- Chart 4: Stacked bar -->
-    <div class="chart-box">
-      <h5>4. Which Hospital Types Provide the Most Beds in Each State?</h5>
-      <div id="chart4"></div>
+    <div class="chart-block">
+      <div class="chart-wrap" id="chart3"></div>
+      <p class="caption"><strong>Beds are not keeping up.</strong> A widening gap between bed supply and population signals growing strain on public healthcare infrastructure.</p>
     </div>
-
-    <!-- SECTION 2 -->
-    <h2 class="section-title">Section 2: People Behind the System</h2>
-
-    <!-- Chart 5: Map -->
-    <div class="chart-box">
-      <h5>5. Who Runs Public Healthcare in Each State?</h5>
-      <div id="chart5"></div>
-    </div>
-
-    <!-- More charts coming soon -->
-
   </div>
 
+  <hr class="divider" />
+
+  <!-- SECTION 2 -->
+  <div class="section">
+    <div class="section-eyebrow">Section 2</div>
+    <div class="section-title">Who Provides the Beds?</div>
+
+    <div class="chart-block">
+      <div class="chart-wrap" id="chart4"></div>
+      <p class="caption"><strong>MOH dominates nationally.</strong> Federal policy decisions directly shape bed availability in every state, with non-MOH facilities playing a secondary role.</p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <div class="section-eyebrow">Section 3</div>
+    <div class="section-title">The People Behind the Beds</div>
+
+    <div class="chart-block">
+      <div class="chart-wrap" id="chart5"></div>
+      <p class="caption"><strong>Staff distribution mirrors bed inequality.</strong> Healthcare workers concentrate in urban federal territories, leaving rural and East Malaysian states with fewer per capita.</p>
+    </div>
+
+    <div class="chart-block">
+      <div class="chart-wrap" id="chart6"></div>
+      <p class="caption"><strong>Only two states are well-resourced on both dimensions.</strong> W.P. Kuala Lumpur and Perak exceed the national median in both beds and staff per 1,000 population.</p>
+    </div>
+
+    <div class="chart-block">
+      <div class="chart-wrap" id="chart7"></div>
+      <p class="caption"><strong>Workforce composition varies by state.</strong> A skewed mix of worker types can create capability gaps even where total staff numbers appear sufficient.</p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- SECTION 4 -->
+  <div class="section">
+    <div class="section-eyebrow">Section 4</div>
+    <div class="section-title">Is Malaysia Spending More on Health?</div>
+
+    <div class="chart-block">
+      <div class="chart-wrap" id="chart13"></div>
+      <p class="caption"><strong>Nominal spending has risen, but per-capita growth is the real test.</strong> Flat per-capita figures would signal real-terms stagnation despite rising headline numbers.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <strong>Data sources:</strong> Ministry of Health Malaysia (MOH) Open Data · Department of Statistics Malaysia (DOSM) · data.gov.my<br>
+    <strong>Author:</strong> Nandhini Hariharan · FIT2179 Data Visualisation 2 · Monash University Malaysia · 2026<br>
+    <strong>Note:</strong> All data refers to public healthcare facilities only. W.P. Putrajaya excluded from per-capita comparisons as a statistical outlier.
+  </div>
+
+  <!-- VEGA-EMBED -->
   <script>
-    // Each line loads one chart from your vega/ folder
-    vegaEmbed('#chart1', 'vega/chart1_map.json', {"actions": false});
-    vegaEmbed('#chart2', 'vega/chart2_bar.json',  {"actions": false});
-    vegaEmbed('#chart3', 'vega/chart3_dot.json',  {"actions": false});
-    vegaEmbed('#chart4', 'vega/chart4_stacked.json', {"actions": false});
-    vegaEmbed('#chart5', 'vega/chart5_map.json',  {"actions": false});
+    const BASE = "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/vega/";
+    const charts = [
+      { id: "chart1",  file: "chart1_choropleth.json" },
+      { id: "chart2",  file: "chart2_bar.json" },
+      { id: "chart3",  file: "chart3_double_line.json" },
+      { id: "chart4",  file: "chart4_stacked_bar.json" },
+      { id: "chart5",  file: "chart5_choropleth.json" },
+      { id: "chart6",  file: "chart6_scatter.json" },
+      { id: "chart7",  file: "chart7_heatmap.json" },
+      { id: "chart13", file: "chart13_line.json" }
+    ];
+
+    charts.forEach(({ id, file }) => {
+      vegaEmbed(`#${id}`, BASE + file, {
+        actions: false,
+        renderer: "svg"
+      }).catch(() => {
+        document.getElementById(id).innerHTML =
+          `<p style="color:#c0392b;font-size:12px;">⚠ Could not load ${file}</p>`;
+      });
+    });
   </script>
 
 </body>
