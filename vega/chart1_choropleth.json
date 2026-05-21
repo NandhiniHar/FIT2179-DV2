@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "title": {
     "text": "Where are Malaysia's Public Hospital Beds? (2022)",
-    "fontSize": 15,
+    "fontSize": 20,
     "font": "sans-serif",
     "color": "#111111",
     "fontWeight": "bold",
