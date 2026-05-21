@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "title": {
     "text": "Which States Have the Most Public Hospital Beds? (2022)",
-    "fontSize": 14,
+    "fontSize": 20,
     "font": "sans-serif",
     "color": "#111111",
     "fontWeight": "bold",
@@ -19,39 +19,84 @@
     {"filter": "datum.type == 'all'"},
     {"filter": "datum.date == '2022-01-01'"}
   ],
-  "mark": {"type": "bar", "color": "#4a7fa5"},
-  "encoding": {
-    "y": {
-      "field": "state",
-      "type": "nominal",
-      "sort": "-x",
-      "title": null,
-      "axis": {
-        "labelFont": "sans-serif",
-        "labelFontSize": 11,
-        "labelColor": "#555555"
+  "layer": [
+    {
+      "mark": {"type": "bar"},
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": "-x",
+          "title": null,
+          "axis": {
+            "labelFont": "sans-serif",
+            "labelFontSize": 11,
+            "labelColor": "#555555"
+          }
+        },
+        "x": {
+          "field": "beds",
+          "type": "quantitative",
+          "title": "Total Hospital Beds",
+          "scale": {"zero": true},
+          "axis": {
+            "titleFont": "sans-serif",
+            "titleFontSize": 11,
+            "titleColor": "#555555",
+            "labelFont": "sans-serif",
+            "labelFontSize": 10,
+            "labelColor": "#555555",
+            "grid": false
+          }
+        },
+        "color": {
+          "condition": [
+            {"test": "datum.state == 'Perak'", "value": "#e67e22"},
+            {"test": "datum.state == 'W.P. Kuala Lumpur'", "value": "#27ae60"}
+          ],
+          "value": "#4a7fa5"
+        },
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "beds", "type": "quantitative", "title": "Beds (2022)", "format": ","}
+        ]
       }
     },
-    "x": {
-      "field": "beds",
-      "type": "quantitative",
-      "title": "Total Hospital Beds",
-      "scale": {"zero": true},
-      "axis": {
-        "titleFont": "sans-serif",
-        "titleFontSize": 11,
-        "titleColor": "#555555",
-        "labelFont": "sans-serif",
-        "labelFontSize": 10,
-        "labelColor": "#555555",
-        "grid": false
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 4,
+        "fontSize": 10,
+        "fontStyle": "italic",
+        "lineBreak": "\n"
+      },
+      "transform": [{"filter": "datum.state == 'Perak'"}],
+      "encoding": {
+        "y": {"field": "state", "type": "nominal"},
+        "x": {"field": "beds", "type": "quantitative"},
+        "text": {"value": "Ranks 2nd in beds,\nbut only 7th in population"},
+        "color": {"value": "#e67e22"}
       }
     },
-    "tooltip": [
-      {"field": "state", "type": "nominal", "title": "State"},
-      {"field": "beds", "type": "quantitative", "title": "Beds (2022)", "format": ","}
-    ]
-  },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 4,
+        "fontSize": 10,
+        "fontStyle": "italic",
+        "lineBreak": "\n"
+      },
+      "transform": [{"filter": "datum.state == 'W.P. Kuala Lumpur'"}],
+      "encoding": {
+        "y": {"field": "state", "type": "nominal"},
+        "x": {"field": "beds", "type": "quantitative"},
+        "text": {"value": "Small federal territory,\ndisproportionately high bed count"},
+        "color": {"value": "#27ae60"}
+      }
+    }
+  ],
   "config": {
     "view": {"stroke": null},
     "axis": {"domainColor": "#cccccc"}
