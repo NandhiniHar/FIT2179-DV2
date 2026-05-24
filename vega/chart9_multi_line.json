@@ -1,0 +1,214 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": {
+    "text": "B40 Health Screenings Per 1000 Population (2019 to 2025)",
+    "subtitle": "Screenings per 1000 people (filter by region, then click legend to highlight).",
+    "fontSize": 20,
+    "subtitleFontSize": 14,
+    "subtitleColor": "#7a7974",
+    "color": "#28251d",
+    "anchor": "start",
+    "offset": 12
+  },
+  "width": 700,
+  "height": 440,
+  "resolve": {"scale": {"x": "shared"}},
+  "data": {
+    "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/pekab40_screenings_totals.csv"
+  },
+  "transform": [
+    {"filter": "datum.year != 2026"},
+    {
+      "lookup": "state",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/population_only_Malaysia.csv"
+        },
+        "key": "state",
+        "fields": ["population"]
+      },
+      "as": ["population"]
+    },
+    {"calculate": "datum.Value / datum.population", "as": "per_thousand"},
+    {
+      "calculate": "datum.state == 'Johor' || datum.state == 'Melaka' || datum.state == 'Negeri Sembilan' || datum.state == 'Selangor' ? 'Central & Southern' : datum.state == 'Kedah' || datum.state == 'Kelantan' || datum.state == 'Pahang' || datum.state == 'Perak' || datum.state == 'Perlis' || datum.state == 'Pulau Pinang' || datum.state == 'Terengganu' ? 'Northern & Eastern' : 'Borneo & Federal Territories'",
+      "as": "region"
+    },
+    {"filter": "regionFilter == 'All Regions' || datum.region == regionFilter"}
+  ],
+  "params": [
+    {
+      "name": "regionFilter",
+      "value": "All Regions",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All Regions",
+          "Central & Southern",
+          "Northern & Eastern",
+          "Borneo & Federal Territories"
+        ],
+        "name": "Filter by Region: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeDash": [9, 10],
+        "strokeWidth": 1.5,
+        "color": "#ca1313",
+        "opacity": 0.9
+      },
+      "data": {"values": [{"year": 2021}]},
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": {"zero": false}
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 1,
+        "interpolate": "linear",
+        "point": {
+          "filled": true,
+          "size": 25,
+          "strokeWidth": 0
+        }
+      },
+      "params": [
+        {
+          "name": "highlight",
+          "select": {"type": "point", "fields": ["state"]},
+          "bind": "legend"
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "title": "Year",
+          "scale": {"zero": false, "domainMin": 2019, "domainMax": 2025},
+          "axis": {
+            "labelAngle": 0,
+            "labelFontSize": 13,
+            "labelColor": "#7a7974",
+            "titleColor": "#7a7974",
+            "titleFontSize": 13,
+            "gridColor": "#dcd9d5",
+            "gridOpacity": 0.3,
+            "domainColor": "#d4d1ca",
+            "tickColor": "#d4d1ca",
+            "tickCount": 7,
+            "format": "d"
+          }
+        },
+        "y": {
+          "field": "per_thousand",
+          "type": "quantitative",
+          "title": "Screenings per 1000 Population",
+          "scale": {"domainMin": 0,"domainMax": 24, "zero": true},
+          "axis": {
+            "labelFontSize": 12,
+            "labelColor": "#7a7974",
+            "titleColor": "#7a7974",
+            "titleFontSize": 13,
+            "gridColor": "#dcd9d5",
+            "gridOpacity": 0.3,
+            "domainColor": "#d4d1ca",
+            "format": ".1f"
+          }
+        },
+        "color": {
+          "condition": {
+            "param": "highlight",
+            "field": "state",
+            "type": "nominal",
+            "scale": {
+              "domain": [
+                "Johor","Kedah","Kelantan","Melaka",
+                "Negeri Sembilan","Pahang","Perak","Perlis",
+                "Pulau Pinang","Sabah","Sarawak","Selangor",
+                "Terengganu","W.P. Kuala Lumpur","W.P. Labuan","W.P. Putrajaya"
+              ],
+              "range": [
+                "#01696f","#006494","#da7101","#7a39bb",
+                "#d19900","#a12c7b","#4f98a3","#5591c7",
+                "#b07a00","#437a22","#0c4e54","#6daa45",
+                "#bb653b","#275f8e","#9250d0","#227f8b"
+              ]
+            },
+            "legend": {
+              "orient": "right",
+              "titleFontSize": 13,
+              "labelFontSize": 11,
+              "labelColor": "#7a7974",
+              "titleColor": "#28251d",
+              "symbolStrokeWidth": 2.5,
+              "title": "State"
+            }
+          },
+          "value": "#cccccc"
+        },
+        "opacity": {
+          "condition": {"param": "highlight", "value": 1},
+          "value": 0.12
+        },
+        "strokeWidth": {
+          "condition": {"param": "highlight", "value": 2.5},
+          "value": 1
+        },
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "region", "type": "nominal", "title": "Region"},
+          {"field": "year", "type": "quantitative", "title": "Year", "format": "d"},
+          {"field": "per_thousand", "type": "quantitative", "title": "Screenings Per 1000 people", "format": ".2f"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "baseline": "top",
+        "dx": 60,
+        "dy": 6,
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#7a7974"
+      },
+      "data": {"values": [{"year": 2021, "note": "COVID-19 disruption"}]},
+      "encoding": {
+        "x": {"field": "year", "type": "quantitative", "scale": {"zero": false}},
+        "y": {"value": 0},
+        "text": {"field": "note", "type": "nominal"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "baseline": "top",
+        "dx": 80,
+        "dy": 20,
+        "fontSize": 10,
+        "fontStyle": "italic",
+        "color": "#bab9b4"
+      },
+      "data": {"values": [{"year": 2021, "note": "*Possible data gap for some states"}]},
+      "encoding": {
+        "x": {"field": "year", "type": "quantitative", "scale": {"zero": false}},
+        "y": {"value": 0},
+        "text": {"field": "note", "type": "nominal"}
+      }
+    }
+  ],
+  "config": {
+    "font": "sans-serif",
+    "view": {"stroke": "transparent"},
+    "padding": {"top": 20, "right": 120, "bottom": 20, "left": 20}
+  }
+}
