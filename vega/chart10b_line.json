@@ -8,14 +8,14 @@
     "color": "#111111",
     "fontWeight": "bold",
     "anchor": "start",
-    "subtitle": "National organ pledges rose to a 2015 peak, collapsed during the 2020 pandemic, then rebounded to a record high in 2022",
-    "subtitleFontSize": 13,
+    "subtitle": "National organ pledges rose to a 2015 peak, collapsed during the 2020 pandemic, then rebounded to a record high in 2022.",
+    "subtitleFontSize": 14,
     "subtitleColor": "#555555",
-    "subtitlePadding": 4
+    "subtitlePadding": 5
   },
 
   "width": 700,
-  "height": 380,
+  "height": 400,
 
   "data": {
     "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/pledges_yearly.csv"
@@ -32,7 +32,7 @@
         "titleFontSize": 11,
         "titleColor": "#555555",
         "labelFont": "sans-serif",
-        "labelFontSize": 10,
+        "labelFontSize": 11,
         "labelColor": "#555555"
       }
     },
@@ -46,7 +46,7 @@
         "titleFontSize": 11,
         "titleColor": "#555555",
         "labelFont": "sans-serif",
-        "labelFontSize": 10,
+        "labelFontSize": 11,
         "labelColor": "#555555",
         "grid": true,
         "gridColor": "#eeeeee"
@@ -59,10 +59,10 @@
       "mark": {
         "type": "line",
         "strokeWidth": 2.5,
-        "color": "#8c1822",
+        "color": "#7B61FF",
         "point": {
           "filled": true,
-          "fill": "#8c1822",
+          "fill": "#7B61FF",
           "size": 60
         }
       },
@@ -81,7 +81,7 @@
         "dy": -12,
         "fontSize": 11,
         "fontWeight": "bold",
-        "color": "#8c1822"
+        "color": "#7B61FF"
       },
       "transform": [
         {"filter": "datum.Year == 2012 || datum.Year == 2022 || datum.Year == 2015"}
@@ -99,7 +99,7 @@
         "dy": -17,
         "fontSize": 11,
         "fontWeight": "bold",
-        "color": "#8c1822"
+        "color": "#7B61FF"
       },
       "transform": [
         {"filter": "datum.Year == 2020"}
@@ -116,9 +116,9 @@
         "dx": 25,
         "dy": -27,
         "fontSize": 11,
-        "fontStyle": "italic",
+        "fontWeight": "bold",
         "lineBreak": "\n",
-        "color": "#555555"
+        "color": "#333333"
       },
       "transform": [{"filter": "datum.Year == 2015"}],
       "encoding": {
@@ -133,9 +133,9 @@
         "dx": -20,
         "dy": -15,
         "fontSize": 11,
-        "fontStyle": "italic",
+        "fontWeight": "bold",
         "lineBreak": "\n",
-        "color": "#555555"
+        "color": "#333333"
       },
       "transform": [{"filter": "datum.Year == 2020"}],
       "encoding": {
@@ -150,9 +150,9 @@
         "dx": -25,
         "dy": 19,
         "fontSize": 11,
-        "fontStyle": "italic",
+        "fontWeight": "bold",
         "lineBreak": "\n",
-        "color": "#555555"
+        "color": "#333333"
       },
       "transform": [{"filter": "datum.Year == 2022"}],
       "encoding": {
