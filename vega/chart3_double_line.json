@@ -56,9 +56,9 @@
       ],
       "mark": {
         "type": "line",
-        "color": "#0072B2",
+        "color": "#FF6E00",
         "strokeWidth": 2.5,
-        "point": { "filled": true, "size": 55, "color": "#0072B2" }
+        "point": { "filled": true, "size": 55, "color": "#FF6E00" }
       },
       "encoding": {
         "x": {
@@ -91,7 +91,7 @@
           "type": "nominal",
           "scale": {
             "domain": ["Population", "Hospital beds"],
-            "range": ["#0072B2", "#E69F00"]
+            "range": ["#FF6E00", "#151BF4"]
           },
           "legend": {
             "title": null,
@@ -140,10 +140,10 @@
       ],
       "mark": {
         "type": "line",
-        "color": "#E69F00",
+        "color": "#151BF4",
         "strokeWidth": 2.5,
         "strokeDash": [6, 3],
-        "point": { "filled": true, "size": 55, "color": "#E69F00" }
+        "point": { "filled": true, "size": 55, "color": "#151BF4" }
       },
       "encoding": {
         "x": { "field": "date", "type": "temporal" },
@@ -188,7 +188,7 @@
         "align": "left",
         "fontSize": 11,
         "fontWeight": "bold",
-        "color": "#B5790B",
+        "color": "#151BF4",
         "lineBreak": "\n"
       },
       "encoding": {
@@ -212,7 +212,7 @@
         "align": "right",
         "fontSize": 11,
         "fontWeight": "bold",
-        "color": "#0072B2",
+        "color": "#FF6E00",
         "lineBreak": "\n"
       },
       "encoding": {
@@ -225,8 +225,8 @@
       "data": {
         "values": [
           {
-            "x": "2020-11-01",
-            "y": 109,
+            "x": "2020-08-01",
+            "y": 108.5,
             "t": "By 2022 beds\nfinally caught\nup to population\ngrowth."
           }
         ]
@@ -236,7 +236,7 @@
         "align": "left",
         "fontSize": 11,
         "fontWeight": "bold",
-        "color": "#555555",
+        "color": "#231d1d",
         "lineBreak": "\n"
       },
       "encoding": {
