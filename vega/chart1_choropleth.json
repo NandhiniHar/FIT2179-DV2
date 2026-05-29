@@ -1,19 +1,20 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "title": {
-    "text": "Where are Malaysia's Public Hospital Beds? (2022)",
+    "text": "Healthcare Capacity by State: Hospital Beds per 1,000 People (2022)",
     "fontSize": 20,
     "font": "sans-serif",
     "color": "#111111",
     "fontWeight": "bold",
     "anchor": "start",
-    "subtitle": "(TO BE ADDED...)",
-    "subtitleFontSize": 13,
+    "subtitle": "A state-level view of hospital infrastructure in Malaysia's public health system.",
+    "subtitleFontSize": 14,
     "subtitleColor": "#555555",
-    "subtitlePadding": 4
+    "subtitlePadding": 5
+  
   },
   "width": 700,
-  "height": 380,
+  "height": 400,
   "projection": {
     "type": "equalEarth",
     "center": [109.5, 4],
@@ -32,7 +33,7 @@
       "mark": {
         "type": "geoshape",
         "fill": "#d4d4d4",
-        "stroke": "#ffffff",
+        "stroke": "#d4d4d4",
         "strokeWidth": 0.5
       }
     },
@@ -75,7 +76,7 @@
       ],
       "mark": {
         "type": "geoshape",
-        "stroke": "#ffffff",
+        "stroke": "#555555",
         "strokeWidth": 0.8
       },
       "encoding": {
@@ -87,10 +88,10 @@
             "title": "Beds per 1,000 People",
             "titleFont": "sans-serif",
             "titleFontSize": 11,
-            "titleColor": "#555555",
+            "titleColor": "#000000",
             "labelFont": "sans-serif",
-            "labelFontSize": 10,
-            "labelColor": "#555555",
+            "labelFontSize": 11,
+            "labelColor": "#000000",
             "format": ".2f"
           }
         },
@@ -107,7 +108,7 @@
           {"x": 100.7, "y": 2.3, "x2": 101.7, "y2": 3}
         ]
       },
-      "mark": {"type": "rule", "color": "#cc0000", "strokeWidth": 1},
+      "mark": {"type": "rule", "color": "#333333", "strokeWidth": 1},
       "encoding": {
         "longitude": {"field": "x", "type": "quantitative"},
         "latitude": {"field": "y", "type": "quantitative"},
@@ -121,15 +122,15 @@
           {
             "longitude": 99.8,
             "latitude": 2.2,
-            "label": "W.P. Putrajaya\n(too small to see):\nhighest beds per \ncapita in Malaysia"
+            "label": "W.P. Putrajaya\n(too small to see):\nhighest beds per \ncapita in Malaysia."
           }
         ]
       },
       "mark": {
         "type": "text",
-        "fontSize": 10,
+        "fontSize": 11,
         "fontWeight": "bold",
-        "color": "#cc0000",
+        "color": "#333333",
         "align": "left",
         "lineBreak": "\n"
       },
@@ -166,7 +167,7 @@
       },
       "mark": {
         "type": "text",
-        "fontSize": 10,
+        "fontSize": 11,
         "fontWeight": "bold",
         "color": "#333333",
         "align": "left",
@@ -206,7 +207,7 @@
       },
       "mark": {
         "type": "text",
-        "fontSize": 10,
+        "fontSize": 11,
         "fontWeight": "bold",
         "color": "#333333",
         "align": "left",
