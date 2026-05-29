@@ -1,0 +1,33 @@
+state,date,sex,age,ethnicity,population,pop_key
+Johor,1/1/2012,both,overall,overall,3450.4,Johor|1/1/2012
+Johor,1/1/2022,both,overall,overall,4028.3,Johor|1/1/2022
+Kedah,1/1/2012,both,overall,overall,2001.1,Kedah|1/1/2012
+Kedah,1/1/2022,both,overall,overall,2163.1,Kedah|1/1/2022
+Kelantan,1/1/2012,both,overall,overall,1651,Kelantan|1/1/2012
+Kelantan,1/1/2022,both,overall,overall,1830.6,Kelantan|1/1/2022
+Melaka,1/1/2012,both,overall,overall,843.2,Melaka|1/1/2012
+Melaka,1/1/2022,both,overall,overall,1008.6,Melaka|1/1/2022
+Negeri Sembilan,1/1/2012,both,overall,overall,1057.7,Negeri Sembilan|1/1/2012
+Negeri Sembilan,1/1/2022,both,overall,overall,1207.9,Negeri Sembilan|1/1/2022
+Pahang,1/1/2012,both,overall,overall,1547.1,Pahang|1/1/2012
+Pahang,1/1/2022,both,overall,overall,1614.3,Pahang|1/1/2022
+Perak,1/1/2012,both,overall,overall,2427,Perak|1/1/2012
+Perak,1/1/2022,both,overall,overall,2514.4,Perak|1/1/2022
+Perlis,1/1/2012,both,overall,overall,239.4,Perlis|1/1/2012
+Perlis,1/1/2022,both,overall,overall,289.8,Perlis|1/1/2022
+Pulau Pinang,1/1/2012,both,overall,overall,1623.2,Pulau Pinang|1/1/2012
+Pulau Pinang,1/1/2022,both,overall,overall,1740.9,Pulau Pinang|1/1/2022
+Sabah,1/1/2012,both,overall,overall,3432.7,Sabah|1/1/2012
+Sabah,1/1/2022,both,overall,overall,3414.9,Sabah|1/1/2022
+Sarawak,1/1/2012,both,overall,overall,2569.7,Sarawak|1/1/2012
+Sarawak,1/1/2022,both,overall,overall,2473.5,Sarawak|1/1/2022
+Selangor,1/1/2012,both,overall,overall,5702.4,Selangor|1/1/2012
+Selangor,1/1/2022,both,overall,overall,7050.3,Selangor|1/1/2022
+Terengganu,1/1/2012,both,overall,overall,1094.1,Terengganu|1/1/2012
+Terengganu,1/1/2022,both,overall,overall,1186.6,Terengganu|1/1/2022
+W.P. Kuala Lumpur,1/1/2012,both,overall,overall,1702.1,W.P. Kuala Lumpur|1/1/2012
+W.P. Kuala Lumpur,1/1/2022,both,overall,overall,1961.2,W.P. Kuala Lumpur|1/1/2022
+W.P. Labuan,1/1/2012,both,overall,overall,90.5,W.P. Labuan|1/1/2012
+W.P. Labuan,1/1/2022,both,overall,overall,96.9,W.P. Labuan|1/1/2022
+W.P. Putrajaya,1/1/2012,both,overall,overall,78.3,W.P. Putrajaya|1/1/2012
+W.P. Putrajaya,1/1/2022,both,overall,overall,117,W.P. Putrajaya|1/1/2022
