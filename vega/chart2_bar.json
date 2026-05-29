@@ -80,7 +80,7 @@
       "encoding": {
         "y": {"field": "state", "type": "nominal", "sort": {"field": "beds", "op": "max", "order": "descending"}},
         "x": {"field": "beds", "type": "quantitative"},
-        "text": {"value": "Ranks 2nd in beds,\nbut only 7th in population"},
+        "text": {"value": "Ranks 2nd in beds,\nbut only 7th in population."},
         "color": {"value": "#1f4e79"}
       }
     },
@@ -97,7 +97,7 @@
       "encoding": {
         "y": {"field": "state", "type": "nominal", "sort": {"field": "beds", "op": "max", "order": "descending"}},
         "x": {"field": "beds", "type": "quantitative"},
-        "text": {"value": "Small federal territory,\ndisproportionately high bed count"},
+        "text": {"value": "Small federal territory,\ndisproportionately high bed count."},
         "color": {"value": "#1f4e79"}
       }
     }
