@@ -7,62 +7,101 @@
     "color": "#111111",
     "fontWeight": "bold",
     "anchor": "start",
-    "subtitle": "(TO BE ADDED...)",
-    "subtitleFontSize": 13,
+    "subtitle": "Ministry of Health (MOH) expenditure in RM Billion, 2011–2023",
+    "subtitleFontSize": 14,
     "subtitleColor": "#555555",
-    "subtitlePadding": 4
+    "subtitlePadding": 5
   },
   "width": 700,
-  "height": 320,
+  "height": 400,
   "data": {
     "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/mnha_moh_expenditure.csv"
   },
   "transform": [
     {"calculate": "datum.expenditure / 1000000000", "as": "expenditure_bn"}
   ],
-  "mark": {
-    "type": "line",
-    "point": {"filled": true, "size": 60},
-    "color": "#4a7fa5",
-    "strokeWidth": 2.5
-  },
-  "encoding": {
-    "x": {
-      "field": "date",
-      "type": "temporal",
-      "title": "Year",
-      "axis": {
-        "titleFont": "sans-serif",
-        "titleFontSize": 11,
-        "titleColor": "#555555",
-        "labelFont": "sans-serif",
-        "labelFontSize": 10,
-        "labelColor": "#555555",
-        "format": "%Y",
-        "grid": false
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeDash": [4, 4],
+        "strokeWidth": 1.5,
+        "color": "#ca1313",
+        "opacity": 0.8
+      },
+      "data": {"values": [{"date": "2021-01-01"}]},
+      "encoding": {
+        "x": {"field": "date", "type": "temporal"}
       }
     },
-    "y": {
-      "field": "expenditure_bn",
-      "type": "quantitative",
-      "title": "MOH Expenditure (RM Billion)",
-      "scale": {"zero": false},
-      "axis": {
-        "titleFont": "sans-serif",
-        "titleFontSize": 11,
-        "titleColor": "#555555",
-        "labelFont": "sans-serif",
-        "labelFontSize": 10,
-        "labelColor": "#555555",
-        "format": ",.0f",
-        "grid": false
+    {
+      "mark": {
+        "type": "line",
+        "point": {"filled": true, "size": 60},
+        "color": "#111111",
+        "strokeWidth": 2.5
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "title": "Year",
+          "axis": {
+            "titleFont": "sans-serif",
+            "titleFontSize": 11,
+            "titleColor": "#555555",
+            "labelFont": "sans-serif",
+            "labelFontSize": 11,
+            "labelColor": "#555555",
+            "format": "%Y",
+            "grid": false,
+            "domainColor": "#d4d1ca",
+            "tickColor": "#d4d1ca"
+          }
+        },
+        "y": {
+          "field": "expenditure_bn",
+          "type": "quantitative",
+          "title": "MOH Expenditure (RM Billion)",
+          "scale": {"zero": true},
+          "axis": {
+            "titleFont": "sans-serif",
+            "titleFontSize": 11,
+            "titleColor": "#555555",
+            "labelFont": "sans-serif",
+            "labelFontSize": 11,
+            "labelColor": "#555555",
+            "format": ",.1f",
+            "grid": true,
+            "gridColor": "#e0e0e0",
+            "gridDash": [3, 3],
+            "domainColor": "#d4d1ca",
+            "tickColor": "#d4d1ca"
+          }
+        },
+        "tooltip": [
+          {"field": "date", "type": "temporal", "title": "Year", "format": "%Y"},
+          {"field": "expenditure_bn", "type": "quantitative", "title": "Expenditure (RM Billion)", "format": ",.2f"}
+        ]
       }
     },
-    "tooltip": [
-      {"field": "date", "type": "temporal", "title": "Year", "format": "%Y"},
-      {"field": "expenditure", "type": "quantitative", "title": "Expenditure (RM Billion)", "format": ",.0f"}
-    ]
-  },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -6,
+        "dy": 180,
+        "fontSize": 11,
+        "color": "#ca1313"
+      },
+      "data": {"values": [{"date": "2021-01-01"}]},
+      "encoding": {
+        "x": {"field": "date", "type": "temporal"},
+        "y": {"value": 0},
+        "text": {"value": "COVID-19 vaccine rollout drives spending to peak"}
+      }
+    }
+  ],
   "config": {
     "view": {"stroke": null}
   }
