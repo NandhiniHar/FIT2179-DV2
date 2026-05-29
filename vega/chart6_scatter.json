@@ -2,9 +2,10 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "title": {
     "text": "Hospital Beds vs. Healthcare Staff by State (2022) Per 1,000 Population",
-    "subtitle": "Dashed lines = national median. W.P. Putrajaya excluded (outlier: 5.4 beds, 30.4 staff per 1,000)",
+    "subtitle": "Dashed lines = national median. W.P. Putrajaya excluded (outlier: 5.4 beds, 30.4 staff per 1,000).",
     "fontSize": 20,
-    "subtitleFontSize": 13,
+    "subtitleFontSize": 14,
+    "subtitlePadding": 5,
     "font": "sans-serif",
     "subtitleFont": "sans-serif",
     "color": "#111111",
@@ -14,7 +15,7 @@
     "offset": 10
   },
   "width": 700,
-  "height": 460,
+  "height": 400,
   "data": {
     "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/population_2022.csv"
   },
@@ -88,15 +89,13 @@
         "fontSize": 13,
         "font": "sans-serif",
         "opacity": 0.6,
-        "dx": 5,
-        "dy": 14,
         "align": "left"
       },
       "encoding": {
-        "x": {"value": 65},
-        "y": {"value": 2},
+        "x": {"value": 85},
+        "y": {"value": 5},
         "text": {"value": "More Staff, Fewer Beds"},
-        "color": {"value": "#b7770d"}
+        "color": {"value": "#333333"}
       }
     },
     {
@@ -105,15 +104,13 @@
         "fontSize": 13,
         "font": "sans-serif",
         "opacity": 0.6,
-        "dx": 5,
-        "dy": 14,
         "align": "left"
       },
       "encoding": {
-        "x": {"value": 370},
-        "y": {"value": 2},
+        "x": {"value": 485},
+        "y": {"value": 5},
         "text": {"value": "Well-Resourced"},
-        "color": {"value": "#1a7a40"}
+        "color": {"value": "#333333"}
       }
     },
     {
@@ -127,10 +124,10 @@
         "align": "left"
       },
       "encoding": {
-        "x": {"value": 80},
-        "y": {"value": 450},
+        "x": {"value": 100},
+        "y": {"value": 390},
         "text": {"value": "Under-Resourced"},
-        "color": {"value": "#c0392b"}
+        "color": {"value": "#333333"}
       }
     },
     {
@@ -144,10 +141,10 @@
         "align": "left"
       },
       "encoding": {
-        "x": {"value": 370},
-        "y": {"value": 450},
+        "x": {"value": 475},
+        "y": {"value": 390},
         "text": {"value": "More Beds, Fewer Staff"},
-        "color": {"value": "#2471a3"}
+        "color": {"value": "#333333"}
       }
     },
     {
@@ -196,7 +193,7 @@
             "titleFontSize": 11,
             "titleColor": "#555555",
             "labelFont": "sans-serif",
-            "labelFontSize": 10,
+            "labelFontSize": 11,
             "labelColor": "#555555",
             "domainColor": "#cccccc"
           }
@@ -329,7 +326,7 @@
 {
   "mark": {
     "type": "text",
-    "fontSize": 10,
+    "fontSize": 11,
     "fontStyle": "italic",
     "font": "sans-serif",
     "align": "left",
@@ -337,9 +334,9 @@
   },
   "encoding": {
     "x": {"value": 50},
-    "y": {"value": 70},
+    "y": {"value": 60},
     "text": {"value": "Home to 1 in 6 Malaysians,\nyet ranks last in both metrics,\ndemand vastly outpaces supply."},
-    "color": {"value": "#c0392b"}
+    "color": {"value": "#2c7bb6"}
   }
 },
 {
@@ -373,7 +370,7 @@
 {
   "mark": {
     "type": "text",
-    "fontSize": 10,
+    "fontSize": 11,
     "fontStyle": "italic",
     "font": "sans-serif",
     "align": "left",
@@ -381,9 +378,9 @@
   },
   "encoding": {
     "x": {"value": 405},
-    "y": {"value": 320},
+    "y": {"value": 300},
     "text": {"value": "Sabah & Sarawak are geographically\nMalaysia's largest states yet receive\nfewer beds per capita, a persistent\nurban-rural healthcare divide."},
-    "color": {"value": "#c0392b"}
+    "color": {"value": "#d7191c"}
   }
 }
   ],
