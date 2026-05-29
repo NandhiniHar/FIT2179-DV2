@@ -9,14 +9,14 @@
     "fontWeight": "bold",
     "anchor": "start",
 
-    "subtitle": "Donation rates vary sharply across states, reflecting healthcare access, urban concentration, and population size",
-    "subtitleFontSize": 13,
+    "subtitle": "Donation rates vary sharply across states, reflecting healthcare access, urban concentration, and population size.",
+    "subtitleFontSize": 14,
     "subtitleColor": "#555555",
-    "subtitlePadding": 4
+    "subtitlePadding": 5
   },
 
   "width": 700,
-  "height": 380,
+  "height": 400,
 
   "data": {
     "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/pivoted_'12_'22.csv"
@@ -112,7 +112,7 @@
             "titleColor": "#555555",
 
             "labelFont": "sans-serif",
-            "labelFontSize": 10,
+            "labelFontSize": 11,
             "labelColor": "#555555",
 
             "grid": false
@@ -155,14 +155,14 @@
 
           "scale": {
             "domain": [2012, 2022],
-            "range": ["#e8a3aa", "#8c1822"]
+            "range": ["#e8a3aa", "#420D09"]
           },
 
           "legend": {
             "title": "Donation Year",
             "orient": "right",
             "offset": 15,
-            "titleFontSize": 12,
+            "titleFontSize": 11,
             "labelFontSize": 11,
             "symbolSize": 120
           }
@@ -212,7 +212,6 @@
         "dx": 5,
         "dy": 15,
         "fontSize": 11,
-        "fontStyle": "italic",
         "lineBreak": "\n"
       },
 
@@ -239,7 +238,7 @@
         },
 
         "color": {
-          "value": "#555555"
+          "value": "#333333"
         }
       }
     },
@@ -252,7 +251,6 @@
         "dx": 150,
         "dy":2,
         "fontSize": 11,
-        "fontStyle": "italic",
         "lineBreak": "\n"
       },
 
@@ -279,14 +277,14 @@
         },
 
         "color": {
-          "value": "#777777"
+          "value": "#333333"
         }
       }
     },
     {
   "mark": {
     "type": "rule",
-    "color": "#0018F9",
+    "color": "#333333",
     "strokeWidth": 1
   },
 
@@ -324,7 +322,6 @@
         "dx": 160,
         "dy":-80,
         "fontSize": 11,
-        "fontStyle": "italic",
         "lineBreak": "\n"
       },
 
@@ -351,7 +348,7 @@
         },
 
         "color": {
-          "value": "#777777"
+          "value": "#333333"
         }
       }
     }
