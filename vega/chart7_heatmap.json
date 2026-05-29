@@ -8,9 +8,9 @@
     "fontWeight": "bold",
     "anchor": "start",
     "subtitle": "Share of each staff type as percentage (%) of total state workforce.",
-    "subtitleFontSize": 13,
+    "subtitleFontSize": 14,
     "subtitleColor": "#555555",
-    "subtitlePadding": 4
+    "subtitlePadding": 5
   },
   "width": 700,
   "height": 400,
@@ -79,16 +79,16 @@
       "type": "quantitative",
       "title": "% of State Workforce",
       "scale": {
-        "scheme": "blues",
+        "scheme": "greens",
         "domain": [0, 70]
       },
       "legend": {
         "orient": "right",
         "direction": "vertical",
-        "titleFontSize": 10,
-        "labelFontSize": 9,
+        "titleFontSize": 11,
+        "labelFontSize": 11,
         "gradientLength": 220,
-        "gradientThickness": 10,
+        "gradientThickness": 15,
         "format": ".0f",
         "labelExpr": "datum.label + '%'"
       }
