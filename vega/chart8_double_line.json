@@ -1,23 +1,24 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "title": {
-    "text": "Is Malaysia's Healthcare Workforce Growing Fast Enough? (2015–2022)",
-    "subtitle": "Growth indexed to 2015 = 100. A value of 110 means 10% growth since 2015. Source: MOH Malaysia & DOSM.",
+    "text": "Is Malaysia's Healthcare Workforce Growing Fast Enough? (2015 to 2022)",
+    "subtitle": "Growth indexed to 2015 = 100. A value of 110 means 10% growth since 2015.",
     "fontSize": 20,
     "font": "sans-serif",
     "color": "#111111",
     "fontWeight": "bold",
     "anchor": "start",
-    "subtitleFontSize": 13,
+    "subtitleFontSize": 14,
     "subtitleColor": "#555555",
-    "subtitlePadding": 4
+    "subtitlePadding": 5
   },
   "width": 700,
-  "height": 350,
+  "height": 400,
   "layer": [
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/population_only_Malaysia.csv"
+        "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/population_malaysia_'12_'22.csv",
+        "format": {"type": "csv", "parse": {"date": "date", "population": "number"}}
       },
       "transform": [
         {"filter": "datum.sex == 'both' && datum.age == 'overall' && datum.ethnicity == 'overall'"},
@@ -62,7 +63,7 @@
           "axis": {
             "titleFontSize": 11,
             "titleColor": "#555555",
-            "labelFontSize": 10,
+            "labelFontSize": 11,
             "labelColor": "#555555",
             "grid": true,
             "gridColor": "#e8e8e8",
@@ -76,8 +77,8 @@
           "type": "nominal",
           "scale": {
             "domain": ["Population", "Healthcare Staff"],
-            "range": ["#0072B2", "#E69F00"]
-          },
+            "range": ["#FF6E00", "#8BC34A"]
+          }
         },
         "tooltip": [
           {"field": "date", "type": "temporal", "title": "Year", "format": "%Y"},
@@ -88,7 +89,8 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/healthcare_staff_only_Malaysia.csv"
+        "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/healthcare_staff_only_Malaysia.csv",
+        "format": {"type": "csv", "parse": {"date": "date", "staff": "number"}}
       },
       "transform": [
         {"filter": "datum.type == 'all' && year(datum.date) >= 2015 && year(datum.date) <= 2022"},
@@ -122,7 +124,7 @@
           "type": "nominal",
           "scale": {
             "domain": ["Population", "Healthcare Staff"],
-            "range": ["#0072B2", "#E69F00"]
+            "range": ["#FF6E00", "#8BC34A"]
           },
           "legend": {
             "title": null,
@@ -130,7 +132,8 @@
             "direction": "vertical",
             "labelFontSize": 11,
             "symbolType": "stroke",
-            "symbolStrokeWidth": 2.5,
+            "symbolStrokeWidth": 15,
+            "symbolSize": 250,
             "padding": 8
           }
         },
@@ -153,9 +156,10 @@
         "align": "left",
         "dx": -29,
         "dy": 10,
-        "fontSize": 9,
+        "fontSize": 11,
         "color": "#999999",
-        "fontStyle": "italic"
+        "fontStyle": "italic",
+        "fontWeight": "bold"
       },
       "encoding": {
         "x": {"field": "x", "type": "temporal"},
@@ -164,50 +168,57 @@
       }
     },
     {
-      "data": {"values": [{"x": "2020-01-01"}]},
-      "layer": [
-        {
-          "mark": {"type": "rule", "color": "#999999", "strokeDash": [4, 3], "strokeWidth": 1},
-          "encoding": {"x": {"field": "x", "type": "temporal"}}
-        },
-        {
-  "data": {"values": [{"start": "2019-01-01", "end": "2020-01-01"}]},
-  "mark": {"type": "rect", "opacity": 0.06, "color": "#999999"},
-  "encoding": {
-    "x": {"field": "start", "type": "temporal"},
-    "x2": {"field": "end", "type": "temporal"}
-  }
-},
-        {
-          "mark": {
-            "type": "text",
-            "align": "left",
-            "dx": -90,
-            "dy": -45,
-            "fontSize": 9,
-            "color": "#555555",
-            "fontStyle": "italic",
-            "lineBreak": "\n"
-          },
-          "encoding": {
-            "x": {"field": "x", "type": "temporal"},
-            "text": {"value": "COVID-19 slows\nhiring growth"}
-          }
-        }
-      ]
+      "data": {"values": [{"start": "2019-01-01", "end": "2020-01-01"}]},
+      "mark": {"type": "rect", "opacity": 0.06, "color": "#999999"},
+      "encoding": {
+        "x": {"field": "start", "type": "temporal"},
+        "x2": {"field": "end"}
+      }
     },
     {
-  "data": {"values": [{"x": "2019-01-01"}]},
-  "mark": {
-    "type": "rule",
-    "color": "#999999",
-    "strokeDash": [4, 3],
-    "strokeWidth": 1
-  },
-  "encoding": {
-    "x": {"field": "x", "type": "temporal"}
-  }
-}
+      "data": {"values": [{"x": "2020-01-01"}]},
+      "mark": {"type": "rule", "color": "#999999", "strokeDash": [4, 3], "strokeWidth": 1},
+      "encoding": {"x": {"field": "x", "type": "temporal"}}
+    },
+    {
+      "data": {"values": [{"x": "2020-01-01", "y": 128}]},
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "fontSize": 11,
+        "color": "#555555",
+        "fontWeight": "bold",
+        "lineBreak": "\n"
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "temporal"},
+        "y": {"field": "y", "type": "quantitative"},
+        "text": {"value": "COVID-19 slows\nhiring growth."}
+      }
+    },
+    {
+      "data": {"values": [{"x": "2020-04-01", "y": 118}]},
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "fontSize": 11,
+        "color": "#555555",
+        "fontWeight": "bold",
+        "lineBreak": "\n"
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "temporal"},
+        "y": {"field": "y", "type": "quantitative"},
+        "text": {"value": "Workforce growing faster than\npopulation indicates improving\ncare access."}
+      }
+    },
+    {
+      "data": {"values": [{"x": "2019-01-01"}]},
+      "mark": {"type": "rule", "color": "#999999", "strokeDash": [4, 3], "strokeWidth": 1},
+      "encoding": {"x": {"field": "x", "type": "temporal"}}
+    }
   ],
   "config": {
     "view": {"stroke": null},
