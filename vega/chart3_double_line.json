@@ -77,7 +77,7 @@
           "field": "index",
           "type": "quantitative",
           "title": "Indexed Value (first year = 100)",
-          "scale": { "zero": false, "domainMin": 98 },
+          "scale": { "zero": false, "domainMin": 98, "domainMax": 113 },
           "axis": {
             "grid": true,
             "gridColor": "#e8e8e8",
@@ -146,23 +146,103 @@
         "point": { "filled": true, "size": 55, "color": "#E69F00" }
       },
       "encoding": {
-        "x": {
-          "field": "date",
-          "type": "temporal"
-        },
-        "y": {
-          "field": "index",
-          "type": "quantitative"
-        },
-        "color": {
-          "field": "series",
-          "type": "nominal"
-        },
+        "x": { "field": "date", "type": "temporal" },
+        "y": { "field": "index", "type": "quantitative" },
+        "color": { "field": "series", "type": "nominal" },
         "tooltip": [
           { "field": "date", "type": "temporal", "title": "Year", "format": "%Y" },
           { "field": "beds_num", "type": "quantitative", "title": "Total Beds", "format": "," },
           { "field": "index", "type": "quantitative", "title": "Index (2015=100)", "format": ".1f" }
         ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          { "x": "2019-01-01" },
+          { "x": "2022-01-01" }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#cccccc",
+        "strokeDash": [3, 3],
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": { "field": "x", "type": "temporal" }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": "2019-04-01",
+            "y": 103.5,
+            "t": "Beds surged +6.4% in 2019–2022,\nfaster than +4.2% over the prior\nfour years due to pandemic\ncapacity push"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#B5790B",
+        "lineBreak": "\n"
+      },
+      "encoding": {
+        "x": { "field": "x", "type": "temporal" },
+        "y": { "field": "y", "type": "quantitative" },
+        "text": { "field": "t" }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": "2018-12-01",
+            "y": 111.5,
+            "t": "Population growth flattened after 2019\n(just +0.5% in 2019 to 2022)."
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#0072B2",
+        "lineBreak": "\n"
+      },
+      "encoding": {
+        "x": { "field": "x", "type": "temporal" },
+        "y": { "field": "y", "type": "quantitative" },
+        "text": { "field": "t" }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": "2020-11-01",
+            "y": 109,
+            "t": "By 2022 beds\nfinally caught\nup to population\ngrowth."
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#555555",
+        "lineBreak": "\n"
+      },
+      "encoding": {
+        "x": { "field": "x", "type": "temporal" },
+        "y": { "field": "y", "type": "quantitative" },
+        "text": { "field": "t" }
       }
     }
   ],
