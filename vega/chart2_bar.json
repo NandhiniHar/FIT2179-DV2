@@ -7,15 +7,16 @@
     "color": "#111111",
     "fontWeight": "bold",
     "anchor": "start",
-    "subtitle": "(TO BE ADDED...)",
-    "subtitleFontSize": 13,
+    "subtitle": "Selangor leads the count, but some smaller states surprise.",
+    "subtitleFontSize": 14,
     "subtitleColor": "#555555",
-    "subtitlePadding": 4
+    "subtitlePadding": 5
   },
   "width": 700,
-  "height": 380,
+  "height": 400,
   "data": {
-    "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/hospital_beds.csv"
+    "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/hospital_beds.csv",
+    "format": {"type": "csv", "parse": {"beds": "number"}}
   },
   "transform": [
     {"filter": "datum.district == 'All Districts'"},
@@ -30,7 +31,7 @@
         "y": {
           "field": "state",
           "type": "nominal",
-          "sort": "-x",
+          "sort": {"field": "beds", "op": "max", "order": "descending"},
           "title": null,
           "axis": {
             "labelFont": "sans-serif",
@@ -48,21 +49,21 @@
             "titleFontSize": 11,
             "titleColor": "#555555",
             "labelFont": "sans-serif",
-            "labelFontSize": 10,
+            "labelFontSize": 11,
             "labelColor": "#555555",
             "grid": false
           }
         },
         "color": {
           "condition": [
-            {"test": "datum.state == 'Perak'", "value": "#e67e22"},
-            {"test": "datum.state == 'W.P. Kuala Lumpur'", "value": "#27ae60"}
+            {"test": "datum.state == 'Perak'", "value": "#1f4e79"},
+            {"test": "datum.state == 'W.P. Kuala Lumpur'", "value": "#1f4e79"}
           ],
-          "value": "#4a7fa5"
+          "value": "#cfe2f3"
         },
         "tooltip": [
           {"field": "state", "type": "nominal", "title": "State"},
-          {"field": "beds", "type": "quantitative", "title": "Beds (2022)", "format": ","}
+          {"field": "beds", "type": "quantitative", "title": "Number of Beds", "format": ","}
         ]
       }
     },
@@ -71,16 +72,16 @@
         "type": "text",
         "align": "left",
         "dx": 4,
-        "fontSize": 10,
-        "fontStyle": "italic",
+        "fontSize": 11,
+        "fontWeight": "bold",
         "lineBreak": "\n"
       },
       "transform": [{"filter": "datum.state == 'Perak'"}],
       "encoding": {
-        "y": {"field": "state", "type": "nominal"},
+        "y": {"field": "state", "type": "nominal", "sort": {"field": "beds", "op": "max", "order": "descending"}},
         "x": {"field": "beds", "type": "quantitative"},
         "text": {"value": "Ranks 2nd in beds,\nbut only 7th in population"},
-        "color": {"value": "#e67e22"}
+        "color": {"value": "#1f4e79"}
       }
     },
     {
@@ -88,16 +89,16 @@
         "type": "text",
         "align": "left",
         "dx": 4,
-        "fontSize": 10,
-        "fontStyle": "italic",
+        "fontSize": 11,
+        "fontWeight": "bold",
         "lineBreak": "\n"
       },
       "transform": [{"filter": "datum.state == 'W.P. Kuala Lumpur'"}],
       "encoding": {
-        "y": {"field": "state", "type": "nominal"},
+        "y": {"field": "state", "type": "nominal", "sort": {"field": "beds", "op": "max", "order": "descending"}},
         "x": {"field": "beds", "type": "quantitative"},
         "text": {"value": "Small federal territory,\ndisproportionately high bed count"},
-        "color": {"value": "#27ae60"}
+        "color": {"value": "#1f4e79"}
       }
     }
   ],
