@@ -8,12 +8,12 @@
     "fontWeight": "bold",
     "anchor": "start",
     "subtitle": "Urban federal territories lead, while high-population states like Selangor are diluted.",
-    "subtitleFontSize": 13,
+    "subtitleFontSize": 14,
     "subtitleColor": "#555555",
-    "subtitlePadding": 4
+    "subtitlePadding": 5
   },
   "width": 700,
-  "height": 380,
+  "height": 400,
   "projection": {
     "type": "equalEarth",
     "center": [109.5, 4],
@@ -74,7 +74,7 @@
       ],
       "mark": {
         "type": "geoshape",
-        "stroke": "#ffffff",
+        "stroke": "#000000",
         "strokeWidth": 0.8
       },
       "encoding": {
@@ -86,10 +86,10 @@
             "title": "Healthcare Staff\nper 1,000 People",
             "titleFont": "sans-serif",
             "titleFontSize": 11,
-            "titleColor": "#555555",
+            "titleColor": "#111111",
             "labelFont": "sans-serif",
-            "labelFontSize": 10,
-            "labelColor": "#555555",
+            "labelFontSize": 11,
+            "labelColor": "#111111",
             "format": ".2f"
           }
         },
@@ -107,7 +107,7 @@
           {"x": 100.7, "y": 2.3, "x2": 101.7, "y2": 3.1}
         ]
       },
-      "mark": {"type": "rule", "color": "#cc0000", "strokeWidth": 1},
+      "mark": {"type": "rule", "color": "#333333", "strokeWidth": 1},
       "encoding": {
         "longitude": {"field": "x", "type": "quantitative"},
         "latitude": {"field": "y", "type": "quantitative"},
@@ -120,16 +120,16 @@
         "values": [
           {
             "longitude": 99.8,
-            "latitude": 2.2,
-            "label": "W.P. Kuala\nLumpur: highest\nratio (9.66 per 1,000) -\nMalaysia's main\nhealthcare hub"
+            "latitude": 2.1,
+            "label": "W.P. Kuala\nLumpur: highest\nratio -\nMalaysia's main\nhealthcare hub."
           }
         ]
       },
       "mark": {
         "type": "text",
-        "fontSize": 10,
+        "fontSize": 11,
         "fontWeight": "bold",
-        "color": "#cc0000",
+        "color": "#333333",
         "align": "left",
         "lineBreak": "\n"
       },
@@ -143,7 +143,7 @@
     {
       "data": {
         "values": [
-          {"x": 104, "y": 4, "x2": 101.4, "y2": 3.45}
+          {"x": 104, "y": 4, "x2": 102.4, "y2": 3.5}
         ]
       },
       "mark": {"type": "rule", "color": "#333333", "strokeWidth": 1},
@@ -160,13 +160,13 @@
           {
             "longitude": 104.1,
             "latitude": 4.2,
-            "label": "Selangor: most staff in absolute numbers (24,009)\nyet only 3.41 per 1,000 - high population\ndilutes healthcare access"
+            "label": "Selangor: most number of staff in\nabsolute numbers yet only 3.41\nper 1,000 - high population\ndilutes healthcare access."
           }
         ]
       },
       "mark": {
         "type": "text",
-        "fontSize": 10,
+        "fontSize": 11,
         "fontWeight": "bold",
         "color": "#333333",
         "align": "left",
