@@ -5,16 +5,18 @@
     "subtitle": "Screenings per 1000 people (filter by region, then click legend to highlight).",
     "fontSize": 20,
     "subtitleFontSize": 14,
+    "subtitlePadding": 5,
     "subtitleColor": "#7a7974",
     "color": "#28251d",
     "anchor": "start",
     "offset": 12
   },
   "width": 700,
-  "height": 440,
+  "height": 400,
   "resolve": {"scale": {"x": "shared"}},
   "data": {
-    "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/pekab40_screenings_totals.csv"
+    "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/pekab40_screenings_totals.csv",
+    "format": {"type": "csv", "parse": {"year": "number", "Value": "number"}}
   },
   "transform": [
     {"filter": "datum.year != 2026"},
@@ -22,7 +24,8 @@
       "lookup": "state",
       "from": {
         "data": {
-          "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/population_only_Malaysia.csv"
+          "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/population_2022.csv",
+          "format": {"type": "csv", "parse": {"population": "number"}}
         },
         "key": "state",
         "fields": ["population"]
@@ -77,7 +80,7 @@
         "interpolate": "linear",
         "point": {
           "filled": true,
-          "size": 25,
+          "size": 15,
           "strokeWidth": 0
         }
       },
@@ -96,10 +99,10 @@
           "scale": {"zero": false, "domainMin": 2019, "domainMax": 2025},
           "axis": {
             "labelAngle": 0,
-            "labelFontSize": 13,
+            "labelFontSize": 11,
             "labelColor": "#7a7974",
             "titleColor": "#7a7974",
-            "titleFontSize": 13,
+            "titleFontSize": 11,
             "gridColor": "#dcd9d5",
             "gridOpacity": 0.3,
             "domainColor": "#d4d1ca",
@@ -112,12 +115,12 @@
           "field": "per_thousand",
           "type": "quantitative",
           "title": "Screenings per 1000 Population",
-          "scale": {"domainMin": 0,"domainMax": 24, "zero": true},
+          "scale": {"domainMin": 0, "domainMax": 24, "zero": true},
           "axis": {
-            "labelFontSize": 12,
+            "labelFontSize": 11,
             "labelColor": "#7a7974",
             "titleColor": "#7a7974",
-            "titleFontSize": 13,
+            "titleFontSize": 11,
             "gridColor": "#dcd9d5",
             "gridOpacity": 0.3,
             "domainColor": "#d4d1ca",
@@ -126,7 +129,7 @@
         },
         "color": {
           "condition": {
-            "param": "highlight",
+            "test": "regionFilter != 'All Regions' || (highlight.state && indexof(highlight.state, datum.state) >= 0)",
             "field": "state",
             "type": "nominal",
             "scale": {
@@ -145,23 +148,23 @@
             },
             "legend": {
               "orient": "right",
-              "titleFontSize": 13,
+              "titleFontSize": 11,
               "labelFontSize": 11,
-              "labelColor": "#7a7974",
+              "labelColor": "#333333",
               "titleColor": "#28251d",
               "symbolStrokeWidth": 2.5,
               "title": "State"
             }
           },
-          "value": "#cccccc"
+          "value": "#c8c6c2"
         },
         "opacity": {
-          "condition": {"param": "highlight", "value": 1},
-          "value": 0.12
+          "condition": {"test": "regionFilter != 'All Regions' || (highlight.state && indexof(highlight.state, datum.state) >= 0)", "value": 1},
+          "value": 0.45
         },
         "strokeWidth": {
-          "condition": {"param": "highlight", "value": 2.5},
-          "value": 1
+          "condition": {"test": "regionFilter != 'All Regions' || (highlight.state && indexof(highlight.state, datum.state) >= 0)", "value": 2.5},
+          "value": 0.8
         },
         "tooltip": [
           {"field": "state", "type": "nominal", "title": "State"},
@@ -177,11 +180,11 @@
         "baseline": "top",
         "dx": 60,
         "dy": 6,
-        "fontSize": 12,
+        "fontSize": 11,
         "fontStyle": "italic",
-        "color": "#7a7974"
+        "color": "#333333"
       },
-      "data": {"values": [{"year": 2021, "note": "COVID-19 disruption"}]},
+      "data": {"values": [{"year": 2021, "note": "COVID-19 disruption."}]},
       "encoding": {
         "x": {"field": "year", "type": "quantitative", "scale": {"zero": false}},
         "y": {"value": 0},
@@ -192,11 +195,11 @@
       "mark": {
         "type": "text",
         "baseline": "top",
-        "dx": 80,
+        "dx": 90,
         "dy": 20,
-        "fontSize": 10,
+        "fontSize": 11,
         "fontStyle": "italic",
-        "color": "#bab9b4"
+        "color": "#333333"
       },
       "data": {"values": [{"year": 2021, "note": "*Possible data gap for some states"}]},
       "encoding": {
