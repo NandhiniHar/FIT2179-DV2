@@ -7,15 +7,19 @@
     "color": "#111111",
     "fontWeight": "bold",
     "anchor": "start",
-    "subtitle": "Share of public hospital beds by hospital type - each bar sums to 100%",
-    "subtitleFontSize": 13,
+    "subtitle": "Share of public hospital beds by hospital type - each bar sums to 100%.",
+    "subtitleFontSize": 14,
     "subtitleColor": "#555555",
-    "subtitlePadding": 4
+    "subtitlePadding": 5
   },
   "width": 700,
   "height": 400,
   "data": {
-    "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/hospital_beds.csv"
+    "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/hospital_beds.csv",
+    "format": {
+      "type": "csv",
+      "parse": { "beds": "number" }
+    }
   },
   "transform": [
     { "filter": "year(toDate(datum.date)) == 2022" },
@@ -29,6 +33,16 @@
     {
       "calculate": "datum.type == 'hospital_moh' ? 1 : datum.type == 'hospital_non_moh' ? 2 : 3",
       "as": "sort_order"
+    },
+    {
+      "joinaggregate": [
+        { "field": "beds", "op": "sum", "as": "state_total" }
+      ],
+      "groupby": ["state"]
+    },
+    {
+      "calculate": "datum.beds / datum.state_total",
+      "as": "share"
     }
   ],
   "layer": [
@@ -53,25 +67,11 @@
           "field": "state",
           "type": "nominal",
           "title": null,
-          "sort": { "field": "beds", "op": "sum", "order": "descending" },
           "axis": {
             "labelFontSize": 11,
+            "labelColor": "#555555",
             "ticks": false,
-            "domain": false,
-            "labelColor": {
-              "condition": {
-                "test": "datum.value == 'W.P. Putrajaya'",
-                "value": "#c0392b"
-              },
-              "value": "#555555"
-            },
-            "labelFontWeight": {
-              "condition": {
-                "test": "datum.value == 'W.P. Putrajaya'",
-                "value": "bold"
-              },
-              "value": "normal"
-            }
+            "domain": false
           }
         },
         "color": {
@@ -81,13 +81,18 @@
           "sort": { "field": "sort_order", "op": "min" },
           "scale": {
             "domain": ["MOH Hospital", "Non-MOH Hospital", "Special Medical Institution"],
-            "range": ["#1a5c42", "#74b8a0", "#c8e6d0"]
+            "range": ["#7C287D", "#FBF873", "#008080"]
           },
           "legend": {
             "orient": "right",
             "direction": "vertical",
-            "titleFontSize": 10,
-            "labelFontSize": 10,
+            "titleFontSize": 11,
+            "labelFontSize": 11,
+            "symbolType": "square",
+            "symbolSize": 260,
+            "symbolStrokeWidth": 0,
+            "labelLimit": 1000,
+            "rowPadding": 8,
             "columnPadding": 12,
             "padding": 6
           }
@@ -99,30 +104,37 @@
         "tooltip": [
           { "field": "state", "type": "nominal", "title": "State" },
           { "field": "type_label", "type": "nominal", "title": "Hospital Type" },
-          { "field": "beds", "type": "quantitative", "title": "Beds", "format": "," }
+          { "field": "beds", "type": "quantitative", "title": "Beds", "format": "," },
+          { "field": "share", "type": "quantitative", "title": "Share of State Beds", "format": ".1%" }
         ]
       }
     },
     {
+      "data": {
+        "values": [
+          {
+            "state": "W.P. Kuala Lumpur",
+            "x": 0.5,
+            "t": "KL is the only state where MOH is a minority\nprivate (Non-MOH) hospitals supply\nhalf its beds."
+          }
+        ]
+      },
       "mark": {
         "type": "text",
         "align": "left",
-        "dx": 4,
-        "fontSize": 10,
-        "fontStyle": "italic",
+        "dx": 355,
+        "dy": -17,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#333333",
         "lineBreak": "\n"
       },
-      "transform": [
-        { "filter": "datum.state == 'W.P. Putrajaya'" },
-        { "filter": "datum.type_label == 'Special Medical Institution'" }
-      ],
       "encoding": {
-        "x": { "field": "beds", "type": "quantitative", "stack": "normalize" },
+        "x": { "field": "x", "type": "quantitative" },
         "y": { "field": "state", "type": "nominal" },
-        "text": { "value": "Highest share of\nSpecial Medical Institution" },
-        "color": { "value": "#c0392b" }
+        "text": { "field": "t" }
       }
-    }
+    },
   ],
   "config": {
     "view": { "stroke": null },
