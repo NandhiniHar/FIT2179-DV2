@@ -1,0 +1,379 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+
+  "title": {
+    "text": "Blood Donations per 10,000 People by State: 2012 vs 2022",
+    "fontSize": 20,
+    "font": "sans-serif",
+    "color": "#111111",
+    "fontWeight": "bold",
+    "anchor": "start",
+
+    "subtitle": "Donation rates vary sharply across states, reflecting healthcare access, urban concentration, and population size",
+    "subtitleFontSize": 13,
+    "subtitleColor": "#555555",
+    "subtitlePadding": 4
+  },
+
+  "width": 700,
+  "height": 380,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/pivoted_'12_'22.csv"
+  },
+
+  "transform": [
+
+    {
+      "calculate": "toNumber(datum.Year)",
+      "as": "Year_num"
+    },
+
+    {
+  "calculate": "datum.State + '|' + (datum.Year_num == 2012 ? '1/1/2012' : '1/1/2022')",
+  "as": "lookup_key"
+},
+
+    {
+  "lookup": "lookup_key",
+  "from": {
+    "data": {
+      "url": "https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/data/population_keyed.csv"
+    },
+    "key": "pop_key",
+    "fields": ["population"]
+  },
+
+      "as": ["population"]
+    },
+
+    {
+      "calculate": "(datum.Donations / datum.population) * 10",
+      "as": "donations_per_10000"
+    },
+
+    {
+      "calculate": "format(datum.population / 1000, '.1f') + ' million'",
+      "as": "population_millions"
+    }
+  ],
+
+  "encoding": {
+
+    "y": {
+      "field": "State",
+      "type": "nominal",
+      "title": null,
+
+      "sort": {
+        "field": "donations_per_10000",
+        "op": "max",
+        "order": "descending"
+      },
+
+      "axis": {
+        "offset": 5,
+        "ticks": false,
+        "tickSize": 3,
+        "minExtent": 130,
+
+        "domain": true,
+        "domainColor": "#999999",
+        "domainWidth": 1.5,
+
+        "labelFont": "sans-serif",
+        "labelFontSize": 11,
+        "labelColor": "#555555"
+      }
+    }
+  },
+
+  "layer": [
+
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2
+      },
+
+      "encoding": {
+
+        "x": {
+          "field": "donations_per_10000",
+          "type": "quantitative",
+
+          "title": "Blood Donations per 10,000 People",
+
+          "axis": {
+            "format": ".0f",
+
+            "titleFont": "sans-serif",
+            "titleFontSize": 11,
+            "titleColor": "#555555",
+
+            "labelFont": "sans-serif",
+            "labelFontSize": 10,
+            "labelColor": "#555555",
+
+            "grid": false
+          }
+        },
+
+        "detail": {
+          "field": "State",
+          "type": "nominal"
+        },
+
+        "order": {
+          "field": "Year_num",
+          "type": "ordinal"
+        },
+
+        "color": {
+          "value": "#d9a0a5"
+        }
+      }
+    },
+
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 75
+      },
+
+      "encoding": {
+
+        "x": {
+          "field": "donations_per_10000",
+          "type": "quantitative"
+        },
+
+        "color": {
+          "field": "Year_num",
+          "type": "ordinal",
+
+          "scale": {
+            "domain": [2012, 2022],
+            "range": ["#e8a3aa", "#8c1822"]
+          },
+
+          "legend": {
+            "title": "Donation Year",
+            "orient": "right",
+            "offset": 15,
+            "titleFontSize": 12,
+            "labelFontSize": 11,
+            "symbolSize": 120
+          }
+        },
+
+        "tooltip": [
+
+          {
+            "field": "State",
+            "type": "nominal",
+            "title": "State"
+          },
+
+          {
+            "field": "Year_num",
+            "type": "ordinal",
+            "title": "Year"
+          },
+
+          {
+            "field": "Donations",
+            "type": "quantitative",
+            "title": "Total Donations",
+            "format": ","
+          },
+
+          {
+            "field": "population_millions",
+            "type": "nominal",
+            "title": "Population"
+          },
+
+          {
+            "field": "donations_per_10000",
+            "type": "quantitative",
+            "title": "Donations per 10,000 People",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": 5,
+        "dy": 15,
+        "fontSize": 11,
+        "fontStyle": "italic",
+        "lineBreak": "\n"
+      },
+
+      "transform": [
+        {
+          "filter": "datum.State == 'W.P. Kuala Lumpur' && datum.Year_num == 2022"
+        }
+      ],
+
+      "encoding": {
+
+        "x": {
+          "field": "donations_per_10000",
+          "type": "quantitative"
+        },
+
+        "y": {
+          "field": "State",
+          "type": "nominal"
+        },
+
+        "text": {
+          "value": "KL stands far above other states,\npossibly because major hospitals \nand blood centres attract donors \nfrom surrounding regions"
+        },
+
+        "color": {
+          "value": "#555555"
+        }
+      }
+    },
+
+
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 150,
+        "dy":2,
+        "fontSize": 11,
+        "fontStyle": "italic",
+        "lineBreak": "\n"
+      },
+
+      "transform": [
+        {
+          "filter": "datum.State == 'Pulau Pinang' && datum.Year_num == 2012"
+        }
+      ],
+
+      "encoding": {
+
+        "x": {
+          "field": "donations_per_10000",
+          "type": "quantitative"
+        },
+
+        "y": {
+          "field": "State",
+          "type": "nominal"
+        },
+
+        "text": {
+          "value": "No recorded donations appear\nfor Pulau Pinang in 2012, which\nmay reflect missing or unreported \ndata."
+        },
+
+        "color": {
+          "value": "#777777"
+        }
+      }
+    },
+    {
+  "mark": {
+    "type": "rule",
+    "color": "#0018F9",
+    "strokeWidth": 1
+  },
+
+  "transform": [
+    {
+      "filter": "datum.State == 'Selangor' && datum.Year_num == 2022"
+    }
+  ],
+
+  "encoding": {
+
+    "x": {
+      "field": "donations_per_10000",
+      "type": "quantitative"
+    },
+
+    "x2": {
+      "value": 180
+    },
+
+    "y": {
+      "field": "State",
+      "type": "nominal"
+    },
+
+    "y2": {
+      "value": 310
+    }
+  }
+},
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 160,
+        "dy":-80,
+        "fontSize": 11,
+        "fontStyle": "italic",
+        "lineBreak": "\n"
+      },
+
+      "transform": [
+        {
+          "filter": "datum.State == 'Selangor' && datum.Year_num == 2012"
+        }
+      ],
+
+      "encoding": {
+
+        "x": {
+          "field": "donations_per_10000",
+          "type": "quantitative"
+        },
+
+        "y": {
+          "field": "State",
+          "type": "nominal"
+        },
+
+        "text": {
+          "value": "Even though Selangor has the largest\npopulation, its donation rate stays low,\npossibly because demand grows faster\nthan the number of active donors."
+        },
+
+        "color": {
+          "value": "#777777"
+        }
+      }
+    }
+  ],
+
+  "config": {
+
+    "background": "white",
+
+    "view": {
+      "stroke": null
+    },
+
+    "axis": {
+      "domain": true,
+      "domainColor": "#999999",
+      "domainWidth": 1.5
+    },
+
+    "legend": {
+      "titleFont": "sans-serif",
+      "labelFont": "sans-serif"
+    }
+  }
+}   
