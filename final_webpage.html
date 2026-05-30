@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inside Malaysia's Healthcare System</title>
+  <meta name="description" content="A data-driven overview of Malaysia's healthcare system, from hospital capacity and funding to accessibility and public engagement." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --frame: #ffffff;
+      --border: rgba(15, 23, 42, 0.12);
+      --text: #122033;
+      --muted: #536274;
+      --teal: #0f766e;
+      --section-bg: #eef5f4;
+      --shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+      --content: 1100px;
+      --chart-total-width: 960px;
+      --chart-total-min-height: 520px;
+      --radius: 18px;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --section: clamp(1.5rem, 1.2rem + 1vw, 2.2rem);
+      --body: 1.05rem;
+      --small: 0.96rem;
+      --font: 'Inter', Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.7;
+      font-size: var(--body);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    main {
+      max-width: var(--content);
+      margin: 0 auto;
+      padding: var(--space-12) var(--space-5) var(--space-16);
+    }
+
+    .hero {
+      margin-bottom: var(--space-10);
+      padding: 0;
+    }
+
+    .hero h1 {
+      margin: 0 0 var(--space-5);
+      font-size: 50px;
+      line-height: 1.04;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      font-family: "Times New Roman", Times, serif;
+    }
+
+    br { display: block; }
+
+    .hero p,
+    .section-intro p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .section-group {
+      margin-bottom: var(--space-12);
+      padding: var(--space-8);
+      background: var(--section-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+    }
+
+    .section-intro {
+      margin-bottom: var(--space-8);
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    }
+
+    .section-kicker {
+      margin: 0 0 var(--space-2);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .section-intro h2 {
+      margin: 0 0 var(--space-3);
+      font-size: var(--section);
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      font-family: var(--font);
+    }
+
+    .story-block {
+      margin-bottom: var(--space-10);
+    }
+
+    .story-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .chart-shell {
+      width: 100%;
+      max-width: var(--chart-total-width);
+      min-height: var(--chart-total-min-height);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: var(--space-5) var(--space-8);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      margin: 0;
+    }
+
+    .chart-frame {
+      width: 100%;
+      min-height: 440px;
+      background: var(--frame);
+      border: 1px solid rgba(15, 23, 42, 0.10);
+      border-radius: 14px;
+      padding: var(--space-2);
+      overflow: hidden;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    .chart-host {
+      width: 100%;
+      min-height: 412px;
+      max-width: 820px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    .footer-meta {
+      margin-top: var(--space-10);
+      padding-top: var(--space-5);
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: var(--small);
+    }
+
+    .vega-actions { display: none; }
+
+    @media (max-width: 1024px) {
+      :root {
+        --chart-total-width: 100%;
+        --chart-total-min-height: 500px;
+      }
+
+      .section-group { padding: var(--space-6); }
+      .chart-frame { min-height: 430px; }
+      .chart-host { min-height: 408px; max-width: 100%; padding-right: 0.75rem; }
+    }
+
+    @media (max-width: 640px) {
+      main { padding: var(--space-8) var(--space-4) var(--space-12); }
+      .section-group { padding: var(--space-5); }
+      .chart-shell { padding: var(--space-4) var(--space-5); min-height: 480px; }
+      .chart-frame { min-height: 380px; }
+      .chart-host { min-height: 360px; max-width: 100%; padding-right: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero" aria-labelledby="main-title">
+      <h1 id="main-title">Inside Malaysia's Public Healthcare System</h1>
+      <p>
+        A data-driven overview of Malaysia's healthcare system, from hospital capacity and
+        <br>funding to accessibility and public engagement.
+      </p>
+    </section>
+
+    <section class="section-group">
+      <div class="section-intro">
+        <p class="section-kicker">Section 1</p>
+        <h2>Hospital Capacity and Infrastructure</h2>
+        <p>
+          This section shows Malaysia’s public healthcare capacity, including where hospitals are located,
+          <br>how much infrastructure exists, and which states provides most of the care.
+        </p>
+      </div>
+
+      <section class="story-block">
+        <div class="chart-shell">
+          <div class="chart-frame"><div class="chart-host" id="chart1"></div></div>
+        </div>
+      </section>
+
+      <section class="story-block">
+        <div class="chart-shell">
+          <div class="chart-frame"><div class="chart-host" id="chart2"></div></div>
+        </div>
+      </section>
+
+      <section class="story-block">
+        <div class="chart-shell">
+          <div class="chart-frame"><div class="chart-host" id="chart3"></div></div>
+        </div>
+      </section>
+
+      <section class="story-block">
+        <div class="chart-shell">
+          <div class="chart-frame"><div class="chart-host" id="chart4"></div></div>
+        </div>
+      </section>
+    </section>
+
+    <section class="section-group">
+      <div class="section-intro">
+        <p class="section-kicker">Section 2</p>
+        <h2>Healthcare Workforce and System Readiness</h2>
+        <p>
+          This section shifts from beds to examining staff availability, workforce composition,
+          <br>and whether growth is keeping pace.
+        </p>
+      </div>
+
+      <section class="story-block">
+        <div class="chart-shell">
+          <div class="chart-frame"><div class="chart-host" id="chart5"></div></div>
+        </div>
+      </section>
+
+      <section class="story-block">
+        <div class="chart-shell">
+          <div class="chart-frame"><div class="chart-host" id="chart6"></div></div>
+        </div>
+      </section>
+
+      <section class="story-block">
+        <div class="chart-shell">
+          <div class="chart-frame"><div class="chart-host" id="chart7"></div></div>
+        </div>
+      </section>
+
+      <section class="story-block">
+        <div class="chart-shell">
+          <div class="chart-frame"><div class="chart-host" id="chart8"></div></div>
+        </div>
+      </section>
+    </section>
+
+    <section class="section-group">
+      <div class="section-intro">
+        <p class="section-kicker">Section 3</p>
+        <h2>Accessibility and Public Engagement</h2>
+        <p>
+          This section broadens the story into preventive care, donation behaviour,
+          <br>and public willingness to engage with healthcare systems.
+        </p>
+      </div>
+
+      <section class="story-block">
+        <div class="chart-shell">
+          <div class="chart-frame"><div class="chart-host" id="chart9"></div></div>
+        </div>
+      </section>
+
+      <section class="story-block">
+        <div class="chart-shell">
+          <div class="chart-frame"><div class="chart-host" id="chart10a"></div></div>
+        </div>
+      </section>
+
+      <section class="story-block">
+        <div class="chart-shell">
+          <div class="chart-frame"><div class="chart-host" id="chart10b"></div></div>
+        </div>
+      </section>
+    </section>
+
+    <section class="section-group">
+      <div class="section-intro">
+        <p class="section-kicker">Section 4</p>
+        <h2>Funding and National Sustainability</h2>
+        <p>
+          The final section connects earlier findings on capacity and workforce back
+          <br>to national spending and long-term sustainability.
+        </p>
+      </div>
+
+      <section class="story-block">
+        <div class="chart-shell">
+          <div class="chart-frame"><div class="chart-host" id="chart11"></div></div>
+        </div>
+      </section>
+    </section>
+
+   <footer class="page-footer">
+  <div class="footer-grid">
+    <div class="footer-block">
+      <h3>Authorship</h3>
+      <p><strong>Author:</strong> Nandhini Hariharan</p>
+      <p><strong>Unit:</strong> FIT2179 Data Visualisation</p>
+      <p><strong>Assignment:</strong> Data Visualisation 2</p>
+      <p><strong>Date:</strong> 31 May 2026</p>
+    </div>
+
+    <div class="footer-block">
+      <h3>Data Sources</h3>
+      <ul>
+        <li><a href="https://data.gov.my/data-catalogue/hospital_beds" target="_blank" rel="noopener noreferrer">Hospital Beds - data.gov.my</a></li>
+        <li><a href="https://data.gov.my/data-catalogue/population_state" target="_blank" rel="noopener noreferrer">Population by State - data.gov.my</a></li>
+        <li><a href="https://data.gov.my/data-catalogue/healthcare_staff" target="_blank" rel="noopener noreferrer">Healthcare Staff - data.gov.my</a></li>
+        <li><a href="https://data.moh.gov.my/data-catalogue/mnha_moh" target="_blank" rel="noopener noreferrer">Ministry of Health Expenditure - data.moh.gov.my</a></li>
+        <li><a href="https://data.moh.gov.my/data-catalogue/organ_pledges_state" target="_blank" rel="noopener noreferrer">Organ Pledges by State - data.moh.gov.my</a></li>
+        <li><a href="https://data.moh.gov.my/data-catalogue/pekab40_screenings_state" target="_blank" rel="noopener noreferrer">PeKa B40 Screenings by State - data.moh.gov.my</a></li>
+        <li><a href="https://data.moh.gov.my/data-catalogue/blood_donations_state" target="_blank" rel="noopener noreferrer">Blood Donations by State - data.moh.gov.my</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-block">
+      <h3>Acknowledgement</h3>
+      <p>
+        All visualisations on this page were designed and created by the author<br>
+        using Vega-Lite and standard HTML, CSS, and JavaScript.
+      </p>
+      <p>
+        Generative AI tools were used to assist with grammar, wording refinement, and<br>
+        webpage development support. Final design decisions, annotations, and
+        <br>implementation were completed by the author.
+      </p>
+    </div>
+  </div>
+</footer>
+  </main>
+
+  <script>
+    const chartMap = [
+      ['chart1', 'https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/vega/chart1_choropleth.json'],
+      ['chart2', 'https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/vega/chart2_bar.json'],
+      ['chart3', 'https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/vega/chart3_double_line.json'],
+      ['chart4', 'https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/vega/chart4_stacked_bar.json'],
+      ['chart5', 'https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/vega/chart5_choropleth.json'],
+      ['chart6', 'https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/vega/chart6_scatter.json'],
+      ['chart7', 'https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/vega/chart7_heatmap.json'],
+      ['chart8', 'https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/vega/chart8_double_line.json'],
+      ['chart9', 'https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/vega/chart9_multi_line.json'],
+      ['chart10a', 'https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/vega/chart10a_ranged_scatter.json'],
+      ['chart10b', 'https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/vega/chart10b_line.json'],
+      ['chart11', 'https://raw.githubusercontent.com/NandhiniHar/FIT2179-DV2/refs/heads/main/vega/chart11_line.json']
+    ];
+
+    const embedOptions = {
+ actions: false,
+  renderer: 'svg',
+  config: {
+    background: '#ffffff',
+    axis: {
+      labelFont: 'Inter',
+      titleFont: 'Inter',
+      labelFontSize: 14,
+      titleFontSize: 14,
+      labelColor: '#536274',
+      titleColor: '#122033',
+      gridColor: '#dbe4ea',
+      domainColor: '#c6d0da',
+      tickColor: '#c6d0da'
+    },
+    legend: {
+      labelFont: 'Inter',
+      titleFont: 'Inter',
+      labelFontSize: 14,
+      titleFontSize: 15,
+      labelColor: '#536274',
+      titleColor: '#122033',
+      orient: 'right',
+      direction: 'vertical',
+      offset: 6,
+      padding: 6,
+      symbolSize: 90,
+      titleLimit: 180,
+      labelLimit: 180
+    },
+    title: {
+      font: 'Inter',
+      fontSize: 18,
+      color: '#122033'
+    },
+    view: { stroke: null }
+  }
+};
+
+    chartMap.forEach(([id, url]) => {
+      vegaEmbed(`#${id}`, url, embedOptions).catch(error => {
+        document.getElementById(id).innerHTML =
+          '<p style="color:#b91c1c;max-width:32ch;padding:1rem;">Chart failed to load. Check the JSON path.</p>';
+        console.error(error);
+      });
+    });
+  </script>
+</body>
+</html>
