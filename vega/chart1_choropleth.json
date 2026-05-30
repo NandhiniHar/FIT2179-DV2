@@ -13,8 +13,8 @@
     "subtitlePadding": 5
   
   },
-  "width": 600,
-  "height": 350,
+  "width": 700,
+  "height": 400,
   "projection": {
     "type": "equalEarth",
     "center": [109.5, 4],
