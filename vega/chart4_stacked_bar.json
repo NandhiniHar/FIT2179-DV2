@@ -84,8 +84,8 @@
             "range": ["#7C287D", "#FBF873", "#008080"]
           },
           "legend": {
-            "orient": "right",
-            "direction": "vertical",
+            "orient": "bottom",
+            "direction": "horizontal",
             "titleFontSize": 11,
             "labelFontSize": 9,
             "symbolType": "square",
