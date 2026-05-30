@@ -211,7 +211,6 @@
   ],
   "config": {
     "font": "sans-serif",
-    "view": {"stroke": "transparent"},
-    "padding": {"top": 20, "right": 120, "bottom": 20, "left": 20}
+    "view": {"stroke": "transparent"}
   }
 }
