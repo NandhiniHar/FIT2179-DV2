@@ -12,12 +12,12 @@
     "subtitleColor": "#555555",
     "subtitlePadding": 5
   },
-  "width": 700,
+  "width": 800,
   "height": 400,
   "projection": {
     "type": "equalEarth",
     "center": [109.5, 4],
-    "scale": 2380
+    "scale": 2450
   },
   "layer": [
     {
@@ -83,7 +83,7 @@
           "type": "quantitative",
           "scale": {"scheme": "yellowgreen", "domain": [1, 10]},
           "legend": {
-            "title": "Healthcare Staff\nper 1,000 People",
+            "title": null,
             "titleFont": "sans-serif",
             "titleFontSize": 11,
             "titleColor": "#111111",
