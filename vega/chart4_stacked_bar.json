@@ -66,7 +66,7 @@
         "y": {
           "field": "state",
           "type": "nominal",
-          "title": null,
+          "title": "State",
           "axis": {
             "labelFontSize": 11,
             "labelColor": "#555555",
@@ -77,7 +77,7 @@
         "color": {
           "field": "type_label",
           "type": "nominal",
-          "title": "Hospital Type",
+          "title": null,
           "sort": { "field": "sort_order", "op": "min" },
           "scale": {
             "domain": ["MOH Hospital", "Non-MOH Hospital", "Special Medical Institution"],
@@ -87,13 +87,13 @@
             "orient": "right",
             "direction": "vertical",
             "titleFontSize": 11,
-            "labelFontSize": 11,
+            "labelFontSize": 9,
             "symbolType": "square",
-            "symbolSize": 260,
+            "symbolSize": 100,
             "symbolStrokeWidth": 0,
-            "labelLimit": 1000,
+            "labelLimit": 500,
             "rowPadding": 8,
-            "columnPadding": 12,
+            "columnPadding": 0,
             "padding": 6
           }
         },
@@ -115,7 +115,7 @@
           {
             "state": "W.P. Kuala Lumpur",
             "x": 0.5,
-            "t": "KL is the only state where\nMOH is a minority-\nprivate (Non-MOH) hospitals\nsupply half its beds."
+            "t": "KL is the only\nstate where\nMOH is a minority-\nprivate (Non-MOH)\nhospitals supply half\nits beds."
           }
         ]
       },
@@ -123,7 +123,7 @@
         "type": "text",
         "align": "left",
         "dx": 355,
-        "dy": -17,
+        "dy": -40,
         "fontSize": 11,
         "fontWeight": "bold",
         "color": "#333333",
