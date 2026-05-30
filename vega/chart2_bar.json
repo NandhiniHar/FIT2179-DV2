@@ -32,7 +32,7 @@
           "field": "state",
           "type": "nominal",
           "sort": {"field": "beds", "op": "max", "order": "descending"},
-          "title": null,
+          "title": State,
           "axis": {
             "labelFont": "sans-serif",
             "labelFontSize": 11,
