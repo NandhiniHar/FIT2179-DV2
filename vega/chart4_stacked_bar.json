@@ -87,13 +87,13 @@
             "orient": "bottom",
             "direction": "horizontal",
             "titleFontSize": 11,
-            "labelFontSize": 9,
+            "labelFontSize": 11,
             "symbolType": "square",
             "symbolSize": 100,
             "symbolStrokeWidth": 0,
             "labelLimit": 500,
             "rowPadding": 8,
-            "columnPadding": 0,
+            "columnPadding": 5,
             "padding": 6
           }
         },
@@ -107,32 +107,6 @@
           { "field": "beds", "type": "quantitative", "title": "Beds", "format": "," },
           { "field": "share", "type": "quantitative", "title": "Share of State Beds", "format": ".1%" }
         ]
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {
-            "state": "W.P. Kuala Lumpur",
-            "x": 0.5,
-            "t": "KL is the only\nstate where\nMOH is a minority-\nprivate (Non-MOH)\nhospitals supply half\nits beds."
-          }
-        ]
-      },
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "dx": 355,
-        "dy": -40,
-        "fontSize": 11,
-        "fontWeight": "bold",
-        "color": "#333333",
-        "lineBreak": "\n"
-      },
-      "encoding": {
-        "x": { "field": "x", "type": "quantitative" },
-        "y": { "field": "state", "type": "nominal" },
-        "text": { "field": "t" }
       }
     }
   ],
