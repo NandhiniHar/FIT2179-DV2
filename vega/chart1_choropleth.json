@@ -13,12 +13,12 @@
     "subtitlePadding": 5
   
   },
-  "width": 700,
+  "width": 800,
   "height": 400,
   "projection": {
     "type": "equalEarth",
     "center": [109.5, 4],
-    "scale": 2380
+    "scale": 2400
   },
   "layer": [
     {
