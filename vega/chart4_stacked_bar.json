@@ -81,7 +81,7 @@
           "sort": { "field": "sort_order", "op": "min" },
           "scale": {
             "domain": ["MOH Hospital", "Non-MOH Hospital", "Special Medical Institution"],
-            "range": ["#7C287D", "#FBF873", "#008080"]
+            "range": ["#6A4C93", "#F2C14E", "#2A9D8F"]
           },
           "legend": {
             "orient": "bottom",
