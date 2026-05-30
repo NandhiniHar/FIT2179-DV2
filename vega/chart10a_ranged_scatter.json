@@ -63,7 +63,7 @@
     "y": {
       "field": "State",
       "type": "nominal",
-      "title": null,
+      "title": "State",
 
       "sort": {
         "field": "donations_per_10000",
@@ -72,10 +72,11 @@
       },
 
       "axis": {
-        "offset": 5,
+        "offset":3,
         "ticks": false,
         "tickSize": 3,
         "minExtent": 130,
+        "titlePadding": -10,
 
         "domain": true,
         "domainColor": "#999999",
@@ -159,12 +160,12 @@
           },
 
           "legend": {
-            "title": "Donation Year",
-            "orient": "right",
+            "title": null,
+            "orient": "bottom",
             "offset": 15,
             "titleFontSize": 11,
             "labelFontSize": 11,
-            "symbolSize": 120
+            "symbolSize": 150
           }
         },
 
