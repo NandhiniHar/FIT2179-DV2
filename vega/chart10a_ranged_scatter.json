@@ -162,6 +162,7 @@
           "legend": {
             "title": null,
             "orient": "bottom",
+            "direction": "horizontal",
             "offset": 15,
             "titleFontSize": 11,
             "labelFontSize": 11,
