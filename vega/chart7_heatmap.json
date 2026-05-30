@@ -62,7 +62,7 @@
     "y": {
       "field": "state",
       "type": "nominal",
-      "title": null,
+      "title": "State",
       "sort": {
         "field": "staff",
         "op": "sum",
@@ -77,7 +77,7 @@
     "color": {
       "field": "pct",
       "type": "quantitative",
-      "title": "% of State Workforce",
+      "title": null,
       "scale": {
         "scheme": "greens",
         "domain": [0, 70]
