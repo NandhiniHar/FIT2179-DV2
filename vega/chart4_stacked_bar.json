@@ -134,7 +134,7 @@
         "y": { "field": "state", "type": "nominal" },
         "text": { "field": "t" }
       }
-    },
+    }
   ],
   "config": {
     "view": { "stroke": null },
