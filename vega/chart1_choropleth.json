@@ -85,10 +85,7 @@
           "type": "quantitative",
           "scale": {"scheme": "oranges", "domain": [1, 3]},
           "legend": {
-            "title": "Beds per 1,000 People",
-            "titleFont": "sans-serif",
-            "titleFontSize": 11,
-            "titleColor": "#000000",
+            "title": null,
             "labelFont": "sans-serif",
             "labelFontSize": 11,
             "labelColor": "#000000",
